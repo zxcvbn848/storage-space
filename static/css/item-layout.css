@@ -1,0 +1,136 @@
+main {
+   display: grid;
+   grid-template-columns: 1fr 3fr 12fr;
+   grid-template-rows: 1fr;
+   align-items: center;
+
+   width: 100%;
+   min-height: 100vh;
+}
+/* menu */
+.menu {
+   display: flex;
+   flex-direction: column;
+   justify-content: flex-start;
+   align-items: center;
+   gap: 30px;
+
+   padding: 40px 0px;
+
+   height: 100%;
+
+   background-color: rgb(253, 249, 238);
+}
+
+.menu button {
+   width: var(--button-px);
+   height: var(--button-px);
+
+   border: 2px ridge #1E90FF;
+   border-radius: 5px;
+
+   outline: none;
+   background: none;
+
+   margin: 0;
+   padding: 2px;
+}
+
+.menu button#reset {
+   color: rgb(255, 0, 0);
+   border: 2px ridge rgb(255, 0, 0);
+
+   font-size: 1.2rem;
+}
+
+.menu button#reset:hover {
+   color: white;
+   border: none;
+   background-color: rgb(255, 107, 107);
+   box-shadow: 10px 10px 99px 6px rgb(255, 71, 71);
+}
+
+.menu button:hover,
+.menu button.focus,
+.menu button:focus {
+   border: none;
+   background-color: #4cc9f0;
+   box-shadow: 10px 10px 99px 6px rgba(76, 201, 240, 1);
+}
+
+.menu button img {
+   width: 100%;
+   height: 100%;
+}
+/* button-container */
+.button-container {
+   display: grid;
+   grid-template-columns: repeat(3, var(--button-px));
+   grid-auto-rows: var(--button-px);
+   justify-content: center;
+   justify-items: center;
+   align-items: center;
+   column-gap: 20px;
+   row-gap: 30px;
+
+   padding: 40px 0px;
+
+   height: 100%;
+
+   background-color: rgb(236, 236, 234);
+}
+
+.button-container button {
+   width: var(--button-px);
+   height: var(--button-px);
+
+   border: 2px ridge #1E90FF;
+   border-radius: 5px;
+
+   outline: none;
+   background: none;
+
+   margin: 0;
+   padding: 2px;
+}
+
+.button-container button:hover,
+.button-container button.focus,
+.button-container button:focus {
+   border: none;
+   background-color: #4cc9f0;
+   box-shadow: 10px 10px 99px 6px rgba(76, 201, 240, 1);
+}
+
+.button-container button img {
+   width: 100%;
+   height: 100%;
+}
+/* svg-container */
+.svg-container {
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   align-items: center;
+   gap: 10px;
+
+   padding: 10px;
+
+   height: 100%;
+
+   background-color: rgb(193, 203, 215);
+}
+
+.svg-container svg {
+   height: 100%;
+   width: 100%;
+
+   border: 5px solid rgb(146, 172, 209);
+
+   background-color: #FFFFFF;
+}
+
+.svg-container svg image {
+   padding: 2px;
+   outline: 2px dashed #1E90FF;
+}

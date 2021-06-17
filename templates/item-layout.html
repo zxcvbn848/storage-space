@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block title %}Item layout{% endblock %}
+
+{% block css %}<link href="{{ url_for('static', filename='css/item-layout.css') }}" rel="stylesheet" type="text/css" media="all">{% endblock %}
+
+{% block js %}<script type="module" src="{{ url_for('static', filename='js/item-layout.js') }}"></script>{% endblock %}
+
+{% block content %}
+<main>
+   <div class="menu">
+      <button id="main-item"><img src="{{ url_for('static', filename='image/main-item/002-desk.png') }}" alt="" srcset=""></button>
+      <button id="sub-item"><img src="{{ url_for('static', filename='image/sub-item/key.png') }}" alt="" srcset=""></button>
+      <button id="reset">Reset</button>
+   </div>
+   <div class="button-container" id="main-item-button">
+      <button><img src="{{ url_for('static', filename='image/main-item/002-desk.png') }}" alt="Error" srcset=""></button>         
+      <button><img src="{{ url_for('static', filename='image/main-item/019-drawers.png') }}" alt="Error" srcset=""></button>
+      <button><img src="{{ url_for('static', filename='image/main-item/014-double bed.png') }}" alt="Error" srcset=""></button>
+      <button><img src="{{ url_for('static', filename='image/main-item/028-wardrobe.png') }}" alt="Error" srcset=""></button>
+      <button><img src="{{ url_for('static', filename='image/main-item/009-door.png') }}" alt="Error" srcset=""></button>
+      <button><img src="{{ url_for('static', filename='image/main-item/009-door.png') }}" alt="Error" srcset=""></button>
+      <button><img src="{{ url_for('static', filename='image/main-item/009-door.png') }}" alt="Error" srcset=""></button>
+      <button><img src="{{ url_for('static', filename='image/main-item/009-door.png') }}" alt="Error" srcset=""></button>
+      <button><img src="{{ url_for('static', filename='image/main-item/009-door.png') }}" alt="Error" srcset=""></button>
+   </div>   
+   <div class="button-container hidden" id="sub-item-button">
+      <button><img src="{{ url_for('static', filename='image/main-item/002-desk.png') }}" alt="Error" srcset=""></button>         
+      <button><img src="{{ url_for('static', filename='image/main-item/019-drawers.png') }}" alt="Error" srcset=""></button>
+      <button><img src="{{ url_for('static', filename='image/main-item/014-double bed.png') }}" alt="Error" srcset=""></button>
+      <button><img src="{{ url_for('static', filename='image/main-item/028-wardrobe.png') }}" alt="Error" srcset=""></button>
+      <button><img src="{{ url_for('static', filename='image/main-item/009-door.png') }}" alt="Error" srcset=""></button>
+   </div>
+   <div class="svg-container">
+      <svg id="svg" xmlns="http://www.w3.org/2000/svg"></svg>
+   </div>
+</main>
+{% endblock %}
