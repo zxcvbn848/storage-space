@@ -1,4 +1,4 @@
-from mysql_connect import insertPost
+import re
 import sys
 sys.path.append("..")
 
@@ -10,12 +10,14 @@ from mysql_connect import *
 from s3 import *
 from config import *
 
-api_upload = Blueprint('api_upload', __name__)
+api_layout = Blueprint('api_layout', __name__)
 
-@api_upload.route("/upload", methods=["POST"])
-def postUpload(): 
+@api_layout.route("/layout", methods=["POST"])
+def postLayout(): 
 	try:
-		text = request.form["text"]
+		svg = request.get_json()["svg"]
+		return jsonify({ "data": svg })
+		""" 	text = request.form["text"]
 
 		if not text:
 			return jsonify({ "error": True, "message": "文字未填" })
@@ -45,7 +47,7 @@ def postUpload():
 			if data["text"] and data["image_url"]:
 				return jsonify({ "data": data })
 		else:
-			return jsonify({ "data": None })	
+			return jsonify({ "data": None })	 """
 	except Exception as e:
 		logging.error(e)
 		return jsonify({ "error": True, "message": "伺服器內部錯誤" })

@@ -4,22 +4,55 @@
 
 {% block css %}<link href="{{ url_for('static', filename='css/index.css') }}" rel="stylesheet" type="text/css" media="all">{% endblock %}
 
-{% block js %}<script defer src="{{ url_for('static', filename='js/index.js') }}"></script>{% endblock %}
+{% block js %}<script type="module" src="{{ url_for('static', filename='js/index.js') }}"></script>{% endblock %}
 
 {% block content %}
 <header>
-   <div class="title">發表一篇圖文</div>
-   <form class="upload" enctype="multipart/form-data" id="upload-form">
-      <div class="input-area">
-         <label for="uploadText">文字內容</label>
-         <input type="text" placeholder="請加入圖片描述" id="uploadText" name="uploadText" required>
-         <label for="uploadImage">圖片檔案</label>
-         <input type="file" accept="image/gif, image/jpeg, image/png" name="uploadImage" id="uploadImage" required>
-      </div>
-      <button type="submit">送出</button>
-   </form>
+   <div class="title">Where Is My</div>
+   <div class="evil"><button id="evil-button">Key?</button></div>
+   <div class="slogan">
+      Do you bother about remembering where items are? (e.g. naughty key or wallet)<br>
+      To record it once and for all!
+   </div>
 </header>
 <main>
+   <div class="container">
+      <div class="login-container">
+         <form action="" id="signin-form">
+            <div class="input-group">
+               <label for="signin-name">Name</label>
+               <input type="text" name="" id="signin-name" required>
+            </div>            
+            <div class="input-group">
+               <label for="signin-email">Email</label>
+               <input type="email" name="" id="signin-email" required>
+            </div>
+            <div class="input-group">
+               <label for="signin-password">Password</label>
+               <input type="password" name="" id="signin-password" required>
+            </div>
+            <div class="input-group">
+               <label for="signin-password-check">Password Check</label>
+               <input type="text" name="" id="signin-password-check" required>
+            </div>     
+            <button type="submit" class="login-button">Sign In</button>
+         </form>
+      </div>
+   </div>   
+   <div class="container">
+      <div class="login-container">
+         <form action="" id="signup-form">
+            <div class="input-group">
+               <label for="signup-email">Email</label>
+               <input type="email" name="" id="signup-email" required>
+            </div>
+            <div class="input-group">
+               <label for="signup-password">Password</label>
+               <input type="password" name="" id="signup-password" required>
+            </div>
+            <button type="submit" class="login-button">Sign Up</button>
+         </form>
+      </div>
+   </div>
 </main>
-<a href="#" class="goTop">Top</a>
 {% endblock %}

@@ -16,10 +16,20 @@ websiteDB = mysql.connector.connect(
 webCursor = websiteDB.cursor()
 
 webCursor.execute("""
-   CREATE TABLE IF NOT EXISTS posts(
+   CREATE TABLE IF NOT EXISTS main_layout(
       id BIGINT NOT NULL AUTO_INCREMENT,
-      description VARCHAR(255) NOT NULL, 
-      image_url VARCHAR(255) NOT NULL, 
+      user_id BIGINT NOT NULL,
+      main TEXT NOT NULL, 
+      sub_id BIGINT NOT NULL, 
+      PRIMARY KEY (id)) charset=utf8;
+   """
+)
+webCursor.execute("""
+   CREATE TABLE IF NOT EXISTS sub_layout(
+      id BIGINT NOT NULL AUTO_INCREMENT,
+      user_id BIGINT NOT NULL,
+      main_id BIGINT NOT NULL,
+      sub TEXT NOT NULL, 
       PRIMARY KEY (id)) charset=utf8;
    """
 )

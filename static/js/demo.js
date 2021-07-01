@@ -1,10 +1,3 @@
-import { evilButton } from './modules/index/impossibleButton.js';
-
-evilButton.addEventListener('click', () => {
-   alert('Nice Try');
-   // window.close();
-})
-
 // upload form
 const uploadForm = document.getElementById('upload-form');
 // main
@@ -178,7 +171,7 @@ uploadForm.addEventListener('submit', e => {
    indexControllers.upload();
 }); */
 
-/* goTop.addEventListener('click', e => {
+goTop.addEventListener('click', e => {
    e.preventDefault();
 
    indexControllers.goTop();
@@ -187,4 +180,4 @@ goBottom.addEventListener('click', e => {
    e.preventDefault();
 
    indexControllers.goBottom();
-}); */
+});

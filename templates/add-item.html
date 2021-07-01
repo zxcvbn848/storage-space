@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block title %}Add Item{% endblock %}
+
+{% block css %}<link href="{{ url_for('static', filename='css/add-item.css') }}" rel="stylesheet" type="text/css" media="all">{% endblock %}
+
+{% block js %}<script defer src="{{ url_for('static', filename='js/add-item.js') }}"></script>{% endblock %}
+
+{% block content %}
+<main>
+   <form id="add-item-form">
+      <div class="title">Add Your Items!</div>
+      <div class="input-area">
+         <label for="item-name">Item Name</label>
+         <input type="text" id="item-name">
+      </div>
+      <div class="input-area">
+         <label for="item-place">Item Place</label>
+         <input type="text" id="item-place" placeholder="Place-Layer(e.g.: drawer-1st)">
+      </div>
+      <div class="input-area">
+         <label for="item-tags">Tags</label>
+         <input type="text" id="item-tags">
+      </div>
+      <button>Add</button>
+   </form>
+</main>
+<a href="#" class="goTop">Top</a>
+{% endblock %}

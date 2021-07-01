@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+
+{% block title %}Item List{% endblock %}
+
+{% block css %}<link href="{{ url_for('static', filename='css/item-list.css') }}" rel="stylesheet" type="text/css" media="all">{% endblock %}
+
+{% block js %}<script defer src="{{ url_for('static', filename='js/item-list.js') }}"></script>{% endblock %}
+
+{% block content %}
+<main>
+   <form>
+      <input type="text" id="keyword" name="keyword">
+      <select name="" id="">
+         <option value="">Date</option>
+         <option value="">Place</option>
+         <option value="">Name</option>
+         <option value="">Tags</option>
+      </select>
+      <button class="search-icon">
+         <img src="{{ url_for('static', filename='image/transparency.png') }}" alt="">
+      </button>
+   </form>
+   <div class="layer first">
+      <div class="button-area">
+         <button id="date"></button>
+         <label for="date" class="layer-name">Date</label>
+      </div>
+      <ul>
+         <li>Today</li>
+         <li>Yesterday</li>
+      </ul>
+   </div>
+   <div class="layer second">
+      <div class="button-area">
+         <button id="place"></button>
+         <label for="place" class="layer-name">Place</label>
+      </div>
+      <ul>
+         <li>Table</li>
+         <li>Drawer</li>
+      </ul>
+   </div>
+   <div class="layer third">
+      <div class="button-area">
+         <button id="item"></button>
+         <label for="item" class="layer-name">Item</label>
+      </div>
+      <ul>
+         <li>Key</li>
+         <li>Phone</li>
+      </ul>
+   </div>
+   <div class="layer fourth">
+      <div class="button-area">
+         <button id="tags"></button>
+         <label for="tags" class="layer-name">Tags</label>
+      </div>
+      <ul>
+         <li>New Item</li>
+         <li>Important</li>
+      </ul>
+   </div>
+</main>
+<div class="go">
+   <ul>
+      <li><button id="goTop">Top &uarr;</button></li>
+      <li><button id="goBottom">Bottom &darr;</button></li>
+   </ul>
+</div>
+{% endblock %}

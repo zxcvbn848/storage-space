@@ -14,15 +14,20 @@ function removeElseFocus(currentButton) {
    const buttons = Array.from(document.querySelectorAll('button'));
    for (let button of buttons) {
       if (button === currentButton) continue;
+      if (button === document.querySelector('button#delete')) continue;
+
       button.classList.remove('focus');
       button.blur();
    }
 }
 
 function patternEvent(button) {
+   removeElseFocus(button);
+
+   if (!button.querySelector('img')) return;
+
    const patternSrc = button.querySelector('img').src;
    button.classList.add('focus');
-   removeElseFocus(button);
 
    changePattern(patternSrc);
 }
@@ -30,10 +35,10 @@ function patternEvent(button) {
 function addEventListenerForButtons(buttons) {
    Array.from(buttons.children).forEach(button => {
       button.addEventListener('click', e => {
-         e.preventDefault();
+         e.preventDefault();         
          patternEvent(button);
       });
-   })
+   });
 }
 
 function addEventListenerForReset(resetButton, svg) {
@@ -47,6 +52,9 @@ function addEventListenerForReset(resetButton, svg) {
       if (yes) {
          removeAllChildNodes(svg);
          changePattern(null);
+         document.querySelector('svg').setAttribute('style', `background: #e0e5df;`);
+         document.querySelector('#svg-image-invert').value = 0;
+         document.documentElement.style.setProperty('--svg-image-invert', '0');
    
          resetButton.blur();
    
@@ -57,10 +65,10 @@ function addEventListenerForReset(resetButton, svg) {
    });
 }
 
-function hideElseButtons(currentButton, resetButton) {
-   const buttons = Array.from(document.querySelector('.menu').querySelectorAll('button'));
-   for (let button of buttons) {
-      if (button === resetButton) return;
+function hideElseButtons(currentButton, buttonArray, specialButtons) {
+   for (let button of buttonArray) {
+      if (specialButtons.indexOf(button) !== -1) continue;
+
       if (button === currentButton) {
          document.querySelector(`#${button.id}-button`).classList.remove('hidden');
       } else {
@@ -69,5 +77,9 @@ function hideElseButtons(currentButton, resetButton) {
    }
 }
 
+function changeTitle(button) {
+   const title = document.querySelector('.layout-setting').querySelector('.title');
+   title.textContent = button.dataset.title;
+}
 
-export { patternHref, addEventListenerForButtons, addEventListenerForReset, hideElseButtons }
+export { patternHref, addEventListenerForButtons, addEventListenerForReset, hideElseButtons, changeTitle, removeElseFocus, changePattern }

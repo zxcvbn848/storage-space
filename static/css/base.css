@@ -1,19 +1,104 @@
-* {
+/* @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC&display=swap'); */
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap');
+
+*, *::after, *::before {
    box-sizing: border-box;
+
+   color: white;
+
+   /* font-family: Noto Sans TC; */
+   /* font-family: Lucida Console; */
+   /* font-family: verdana; */
+   font-family: 'Roboto Mono', monospace;
+   font-style: normal;
+   font-weight: normal;
+
+   user-select: none;
 }
 
 :root {
+   /* <nav> related */
+   --nav-height: 60px;
+
+   /* index.css */
+   --header-height: 350px;
+   
+   /* item-layout.css */
    --button-px: 75px;
+   --input-px: var(--button-px);
+
+   /* item-list.css */
+   --border-px: 25px;
+   --layer-margin: 50px;
 }
 
-body {
-   margin: 0;
+html, body {
+   display: flex; flex-direction: column; justify-content: center;
+   position: relative;
+   width: 100%;
+
+   margin: 0; 
    padding: 0;
 
-   overflow-x: hidden;
-   overflow-y: auto;
+   overflow: hidden;
 }
 
 *.hidden {
    display: none;
+}
+* button:not([disabled]), * input, * label, * select {
+   cursor: pointer;
+}
+
+/* nav */
+nav {
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+   
+   position: fixed;
+   top: 0;
+
+   width: 100%;
+   height: var(--nav-height);
+
+   background-color: rgb(146, 172, 209);
+
+   padding: 0px 10px;
+
+   z-index: 10;
+}
+
+nav * {
+   font-size: 1.5rem;
+   color: white;
+}
+
+nav a {
+   text-decoration: none;
+   text-align: center;
+   height: 100%;
+   line-height: var(--nav-height);
+
+   padding: 0px 5px;
+}
+
+nav a:hover {
+   background-color: rgba(76, 201, 240, 1);
+   /* box-shadow: 10px 10px 99px 6px rgba(76, 201, 240, 1); */
+   border-radius: 25px;
+}
+
+nav .link-list {
+   display: flex; justify-content: center; align-items: center;
+   height: 100%;
+   margin: 0; padding: 0;
+}
+nav .link-list li {
+   list-style: none;
+   display: flex; justify-content: center; align-items: center;
+   height: 100%;
+}
+nav .link-list li a {
+   margin: 0px 5px;
 }

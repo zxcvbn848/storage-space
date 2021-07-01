@@ -1,0 +1,149 @@
+/* main */
+main {
+   display: flex;
+   flex-direction: column;
+   justify-content: flex-start;
+   align-items: flex-start;
+
+   gap: 10px;
+
+   margin: 0px auto;
+   margin-top: var(--nav-height);
+   padding: 50px 30px;
+
+   width: 100%;
+   min-height: calc(100vh - var(--nav-height));
+   /* min-height: 100vh; */
+
+   background-color: #eff6ee;
+}
+
+main * {
+   color: black;
+}
+
+main form {
+   display: grid;
+   grid-template-columns: 4fr 1fr 1fr;
+   grid-row: 1fr;
+
+   margin: 0px auto;
+   margin-bottom: 50px;
+}
+main form * {
+   font-size: 30px;
+}
+main form input {
+   border: none;
+   border-radius: 10px 0px 0px 10px;
+}
+main form select {
+   padding: 5px;
+}
+main form .search-icon {
+   width: 60px;
+   height: 60px;
+
+   padding: 10px;
+
+   border: none;
+   border-radius: 0px 10px 10px 0px;
+   background-color: #3e885b;
+   outline: none;
+}
+main form .search-icon img {
+   width: 100%;
+   height: 100%;
+
+   filter: invert(100%);
+}
+
+main .layer {
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   align-items: center;
+
+   background-color: white;
+
+   padding: 10px;
+}
+
+main .layer.second {
+   margin-top: 10px;
+   margin-left: calc(var(--layer-margin) * 1);
+}
+main .layer.third {
+   margin-top: 10px;
+   margin-left: calc(var(--layer-margin) * 2);
+}
+main .layer.fourth {
+   margin-top: 10px;
+   margin-left: calc(var(--layer-margin) * 3);
+}
+
+main .layer .button-area {
+   display: flex; flex-wrap: nowrap;
+
+   width: 100%;
+}
+main .layer .button-area button {
+   position: relative;
+   left: 0px;
+
+   width: 0px;
+   height: 0px;
+
+   border-top: var(--border-px) solid #100b00;
+   border-left: var(--border-px) solid white;
+   border-bottom: 0px;
+   border-right: var(--border-px) solid white;
+
+   padding: 0;
+}
+main .layer .button-area .layer-name {   
+   font-size: var(--border-px);
+}
+main .layer ul {
+   margin-left: 10px;
+}
+main .layer ul li {
+   font-size: var(--border-px);
+}
+
+.go ul {
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   align-items: center;
+
+   position: fixed;
+   right: 5%;
+   bottom: 20px;
+
+   padding: 0;
+}
+.go ul li {
+   list-style: none;
+   text-align: center;
+
+   width: 100%;
+   
+   margin: 10px;
+}
+.go ul li button {
+   width: 100%;
+
+   border: 1px solid black;
+   border-radius: 10px;
+   outline: none;
+   background: none;
+
+   color: black;
+   font-size: 1.5rem;
+}
+.go ul li button:hover {
+   background-color: #3772ff;
+   border: none;
+   color: white;
+}
