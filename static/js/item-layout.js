@@ -1,86 +1,106 @@
-import { patternHref, addEventListenerForButtons, addEventListenerForReset, hideElseButtons, changeTitle, removeElseFocus, changePattern } from './modules/item-layout/button.js';
-import { mainSvg, addEventListenerForSvg, toggleDeleteMode, cancelDeleteMode, toggleDisableforButtons, readMode, editMode } from './modules/item-layout/svg.js';
+import { removeFuncs, pattenFuncs, events, changeTitle, toggleLayout, specialButtons } from './modules/item-layout/button.js';
+import { svgModels, svgViews, svgControllers, deleteModeControllers, toggleDisableforButtons, editModeControllers } from './modules/item-layout/svg.js';
 import { addEventListenerForInput } from './modules/item-layout/setting.js';
+import {} from './signin-confirm.js';
 
 /* svg event */
-mainSvg.addEventListener('mousedown', e => {
-   e.stopPropagation();
-   addEventListenerForSvg(mainSvg, e, patternHref);
-})
+svgModels.fetchGetLayouts()
+   .then(() => svgViews.renderLayout())
+   .then(() => {
+      document.querySelector('.svg-container').querySelectorAll('svg').forEach(svg => {
+         svg.addEventListener('mousedown', e => {
+            e.stopPropagation();
+            svgControllers.addEventListenerForSvg(svg, e);
+         })
+      })
+   });
 
 
 /* mode button */
 const modeButton = document.querySelector('#mode-button');
-modeButton.querySelector('#edit-mode').addEventListener('click', editMode);
-modeButton.querySelector('#read-mode').addEventListener('click', readMode)
+modeButton.querySelector('#edit-mode').addEventListener('click', editModeControllers.editMode);
+modeButton.querySelector('#read-mode').addEventListener('click', editModeControllers.readMode);
+document.addEventListener('keydown', e => {
+   if (e.key === 'r') editModeControllers.readMode();
+   if (e.key === 'e') editModeControllers.editMode();
+});
 
 /* delete button */
 const deleteButton = document.querySelector('button#delete');
 deleteButton.addEventListener('click', e => {   
-   changePattern(null);
-   removeElseFocus(deleteButton);
-   toggleDeleteMode();
+   pattenFuncs.changePattern(null);
+   removeFuncs.removeElseFocus(deleteButton);
+   deleteModeControllers.toggleDeleteMode();
    toggleDisableforButtons();
+});
+document.addEventListener('keydown', e => {
+   if (e.key === 'D') {
+      pattenFuncs.changePattern(null);
+      removeFuncs.removeElseFocus(deleteButton);
+      deleteModeControllers.toggleDeleteMode();
+      toggleDisableforButtons();
+   }
 });
 
 /* cancel button */
 const cancelButton = document.querySelector('button#cancel');
 cancelButton.addEventListener('click', e => {
-   changePattern(null);
-   removeElseFocus(cancelButton);
-   cancelDeleteMode();
+   pattenFuncs.changePattern(null);
+   removeFuncs.removeElseFocus(cancelButton);
+   deleteModeControllers.cancelDeleteMode();
+   toggleDisableforButtons();
 })
+document.addEventListener('keydown', e => {
+   if (e.key === 'C') {
+      pattenFuncs.changePattern(null);
+      removeFuncs.removeElseFocus(cancelButton);
+      deleteModeControllers.cancelDeleteMode();
+      toggleDisableforButtons();
+   }
+});
 
 /* reset button */
 const resetButton = document.querySelector('button#reset');
-addEventListenerForReset(resetButton, mainSvg);
+events.addEventListenerForReset(resetButton);
 
 /* save button */
 const saveButton = document.querySelector('button#save');
 saveButton.addEventListener('click', e => {
    e.preventDefault();
 
-   const svgString = new XMLSerializer().serializeToString(mainSvg);
-   const encodedData = window.btoa(svgString);
-
-   const src = '/api/layout';
-   fetch(src, {
-      method: 'POST',
-      headers: {
-         'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-         "svg": encodedData
-      })
-   })
-      .then(response => response.json())
-      .then(result => {
-         const svgXML = window.atob(result.data);
-         const parser = new DOMParser();
-         const svgElement = parser.parseFromString(svgXML, 'application/xml');
-         document.querySelector('.svg-container').appendChild(svgElement.documentElement);
-      });
+   svgModels.fetchPostLayout();
 })
+document.addEventListener('keydown', e => {
+   if (e.key === 'S') {
+      svgModels.fetchPostLayout();
+   }
+});
 
 /* menu buttons */
 const menuButtons = Array.from(document.querySelector('.menu').querySelectorAll('button'));
 menuButtons.forEach(button => {
-   const specialButtons = [ resetButton, deleteButton, cancelButton, saveButton ];
    if (specialButtons.indexOf(button) !== -1) return;
 
    button.addEventListener('click', e => {
       e.preventDefault();
       changeTitle(button);
-      removeElseFocus(button);
-      hideElseButtons(button, menuButtons, specialButtons);
+      removeFuncs.removeElseFocus(button);
+      removeFuncs.hideElseButtons(button, menuButtons);
    });
 });
 
 /* buttons of item */
 document.querySelectorAll('.button-container').forEach(container => {
    if (container === document.querySelector('#setting-button')) return;
-   addEventListenerForButtons(container);
+   events.addEventListenerForButtons(container);
 });
 
 /* input of setting */
 addEventListenerForInput();
+
+/* layout-menu buttons */
+document.querySelector('.layout-menu').querySelectorAll('button').forEach(button => {
+   button.addEventListener('click', e => {
+      toggleLayout(button);
+   });
+});

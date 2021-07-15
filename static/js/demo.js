@@ -1,3 +1,5 @@
+import {} from './signin-confirm.js';
+
 // upload form
 const uploadForm = document.getElementById('upload-form');
 // main

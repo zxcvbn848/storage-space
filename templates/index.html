@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 
-{% block title %}Index{% endblock %}
+{% block title %}Home{% endblock %}
 
 {% block css %}<link href="{{ url_for('static', filename='css/index.css') }}" rel="stylesheet" type="text/css" media="all">{% endblock %}
 
@@ -18,39 +18,39 @@
 <main>
    <div class="container">
       <div class="login-container">
-         <form action="" id="signin-form">
+         <form action="" id="signup-form">
             <div class="input-group">
-               <label for="signin-name">Name</label>
-               <input type="text" name="" id="signin-name" required>
+               <label for="signup-name">Name</label>
+               <input type="text" name="" id="signup-name" placeholder="Name here." onfocus="this.select();" required>
             </div>            
             <div class="input-group">
-               <label for="signin-email">Email</label>
-               <input type="email" name="" id="signin-email" required>
+               <label for="signup-email">Email</label>
+               <input type="email" name="" id="signup-email" placeholder="Email here." onfocus="this.select();" pattern="^\w+((-\w+)|(\.\w+))*@[A-Za-z0-9]+((\.|-)[A-Za-z0-9]+)*\.[A-Za-z]{2,6}$" required>
             </div>
             <div class="input-group">
-               <label for="signin-password">Password</label>
-               <input type="password" name="" id="signin-password" required>
+               <label for="signup-password">Password</label>
+               <input type="password" name="" id="signup-password" placeholder="Min(4). UC, LC, Num." onfocus="this.select();" minlength="4" pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\s).*$" required>
             </div>
             <div class="input-group">
-               <label for="signin-password-check">Password Check</label>
-               <input type="text" name="" id="signin-password-check" required>
+               <label for="signup-password-check">Password Check</label>
+               <input type="password" name="" id="signup-password-check" placeholder="Same as Password" onfocus="this.select();" minlength="4" pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\s).*$" required>
             </div>     
-            <button type="submit" class="login-button">Sign In</button>
+            <button type="submit" class="login-button">Sign Up</button>
          </form>
       </div>
    </div>   
    <div class="container">
       <div class="login-container">
-         <form action="" id="signup-form">
+         <form action="" id="signin-form">
             <div class="input-group">
-               <label for="signup-email">Email</label>
-               <input type="email" name="" id="signup-email" required>
+               <label for="signin-email">Email</label>
+               <input type="email" name="" id="signin-email" placeholder="Email here." onfocus="this.select();" pattern="^\w+((-\w+)|(\.\w+))*@[A-Za-z0-9]+((\.|-)[A-Za-z0-9]+)*\.[A-Za-z]{2,6}$" required>
             </div>
             <div class="input-group">
-               <label for="signup-password">Password</label>
-               <input type="password" name="" id="signup-password" required>
+               <label for="signin-password">Password</label>
+               <input type="password" name="" id="signin-password" placeholder="Min(4). UC, LC, Num." onfocus="this.select();" minlength="4" pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\s).*$" required>
             </div>
-            <button type="submit" class="login-button">Sign Up</button>
+            <button type="submit" class="login-button">Sign In</button>
          </form>
       </div>
    </div>

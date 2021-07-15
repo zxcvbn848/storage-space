@@ -1,3 +1,5 @@
+import { variables } from './svg.js';
+
 function addEventListenerForInput() {
    document.querySelector('#setting-button').querySelectorAll('input').forEach(input => {
       input.addEventListener('input', inputChanged);
@@ -8,7 +10,7 @@ function addEventListenerForInput() {
 }
 
 function inputChanged(e) {
-   if (e.target.name === 'svg-color') document.querySelector('svg').setAttribute('style', `background: var(--${e.target.name}, #e0e5df);`);
+   if (e.target.name === 'svg-color') variables.usingSvg.setAttribute('style', `background: var(--${e.target.name}, #e0e5df);`);
 
    document.documentElement.style.setProperty(
       `--${e.target.name}`, // e.g.: --shadow-color
@@ -19,7 +21,7 @@ function inputChanged(e) {
 function floorChanged(e) {
    const floor = e.currentTarget.querySelector('img').src;
 
-   document.querySelector('svg').setAttribute('style', `background: white url(${floor})`);
+   variables.usingSvg.setAttribute('style', `background: white url(${floor})`);
 
    document.documentElement.style.setProperty('--svg-color', '#e0e5df');
    document.querySelector('#setting-button').querySelector('input#svg-color').value = '#e0e5df';

@@ -2,9 +2,9 @@
 
 {% block title %}Member{% endblock %}
 
-{% block css %}<link href="{{ url_for('static', filename='css/index.css') }}" rel="stylesheet" type="text/css" media="all">{% endblock %}
+{% block css %}<link href="{{ url_for('static', filename='css/member.css') }}" rel="stylesheet" type="text/css" media="all">{% endblock %}
 
-{% block js %}<script defer src="{{ url_for('static', filename='js/index.js') }}"></script>{% endblock %}
+{% block js %}<script type="module" src="{{ url_for('static', filename='js/member.js') }}"></script>{% endblock %}
 
 {% block content %}
 <header>

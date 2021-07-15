@@ -1,8 +1,9 @@
 import { evilButton } from './modules/index/impossibleButton.js';
+import {} from './modules/index/signin-up.js';
+import {} from './signin-confirm.js';
 
 evilButton.addEventListener('click', () => {
    alert('Nice Try');
-   // window.close();
 })
 
 // upload form

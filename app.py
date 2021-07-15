@@ -3,16 +3,18 @@ from datetime import timedelta
 import os
 
 from api.layout import api_layout
-""" from api.user import api_user
+from api.user import api_user
+""" 
 from api.booking import api_booking
 from api.order import api_order """
 
 app = Flask(__name__)
 app.register_blueprint(api_layout, url_prefix="/api")
-""" app.register_blueprint(api_user, url_prefix="/api")
+app.register_blueprint(api_user, url_prefix="/api")
+""" 
 app.register_blueprint(api_booking, url_prefix="/api")
 app.register_blueprint(api_order, url_prefix="/api")
- """
+"""
 app.config["JSON_SORT_KEYS"] = False
 app.config["JSON_AS_ASCII"] = False
 app.config["TEMPLATES_AUTO_RELOAD"] = True
@@ -44,4 +46,6 @@ def editItem():
 	return render_template("edit-item.html")
 
 if __name__ == "__main__":
-	app.run(host = "0.0.0.0", port = 2000, debug = True)
+	app.run(host = "0.0.0.0", port = 2000
+		, debug = True
+	)

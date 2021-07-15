@@ -11,7 +11,7 @@
    <div class="menu">
       <div class="title">Menu</div>
       <button id="mode" data-title="Mode">Mode</button>
-      <button id="main-item" data-title="Main Item"><img src="{{ url_for('static', filename='image/main-item/002-desk.png') }}" alt="" srcset=""></button>
+      <button id="main-item" data-title="Main Item" ><img src="{{ url_for('static', filename='image/main-item/002-desk.png') }}" alt="" srcset=""></button>
       <button id="sub-item" data-title="Sub Item"><img src="{{ url_for('static', filename='image/sub-item/key.png') }}" alt="" srcset=""></button>
       <button id="setting" data-title="Setting"><img src="{{ url_for('static', filename='image/setting/Windows_Settings_app_icon.png') }}" alt="" srcset=""></button>
       <button id="delete"><img src="{{ url_for('static', filename='image/setting/eraser.png') }}" alt="" srcset=""></button>
@@ -33,8 +33,8 @@
             <input type="number" name="svg-image-invert" id="svg-image-invert" min="0" max="100" value="0">
          </div>         
          <button><img src="{{ url_for('static', filename='image/setting/parquet-001.png') }}" alt="Error" srcset=""></button>
-         <button><img src="{{ url_for('static', filename='image/setting/parquet-002.png') }}" alt="Error" srcset=""></button>
-         <button><img src="{{ url_for('static', filename='image/setting/parquet-003.png') }}" alt="Error" srcset=""></button>
+         <!-- <button><img src="{{ url_for('static', filename='image/setting/parquet-002.png') }}" alt="Error" srcset=""></button> -->
+         <!-- <button><img src="{{ url_for('static', filename='image/setting/parquet-003.png') }}" alt="Error" srcset=""></button> -->
       </div>
       <div class="button-container" id="main-item-button">
          <button><img src="{{ url_for('static', filename='image/main-item/002-desk.png') }}" alt="Error" srcset=""></button>         
@@ -70,10 +70,11 @@
       </div>
    </div>
    <div class="svg-container">
-      <svg id="main-svg" xmlns="http://www.w3.org/2000/svg" oncontextmenu="return false;">
-         <image x="10" y="10" width="100" height="100" href="{{ url_for('static', filename='image/sub-item/box.png') }}"></image>
-         <image x="200" y="200" width="100" height="100" href="{{ url_for('static', filename='image/sub-item/chopstick.png') }}"></image>
-      </svg>
+      <svg id="main-svg" xmlns="http://www.w3.org/2000/svg" oncontextmenu="return false;"></svg>
+   </div>
+   <div class="layout-menu">
+      <div class="title">Layout</div>
+      <button data-layout="main-svg" class="focus">Room</button> 
    </div>
 </main>
 {% endblock %}
