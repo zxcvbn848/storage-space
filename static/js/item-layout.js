@@ -2,6 +2,7 @@ import { removeFuncs, pattenFuncs, events, changeTitle, toggleLayout, specialBut
 import { svgModels, svgViews, svgControllers, deleteModeControllers, toggleDisableforButtons, editModeControllers } from './modules/item-layout/svg.js';
 import { addEventListenerForInput } from './modules/item-layout/setting.js';
 import {} from './signin-confirm.js';
+import {} from './modules/navbar/navbar.js';
 
 /* svg event */
 svgModels.fetchGetLayouts()
@@ -104,3 +105,10 @@ document.querySelector('.layout-menu').querySelectorAll('button').forEach(button
       toggleLayout(button);
    });
 });
+
+// /* onbeforeunload */
+// window.addEventListener('beforeunload', e => {
+//    e.preventDefault();
+//    /* Auto Save */
+//    svgModels.fetchPostLayout();
+// });

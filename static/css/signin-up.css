@@ -1,0 +1,98 @@
+/* main */
+main {
+   display: flex;
+   justify-content: center;
+   align-items: center;
+
+   gap: 10%;
+
+   margin: 0px auto;
+   margin-top: var(--nav-height);
+
+   position: relative;
+
+   width: 100%;
+   min-height: calc(100vh - var(--nav-height));
+   /* min-height: 100vh; */
+}
+main .title {
+   width: 100%;
+   height: 20%;
+
+   line-height: 150%;
+
+   font-size: 3.0rem;
+   text-align: center;
+   color:black;
+}
+
+/* signin & signup */
+.container {
+   display: flex;
+   justify-content: center;
+   align-items: center;
+}
+
+.login-container {
+   background-color: hsla(201, 100%, 6%, 0.6);
+
+   padding: 30px 30px;
+   min-width: 400px;
+   width: 50%;
+   max-width: 600px;
+   
+   border-radius: 50px;
+}
+
+.input-group {
+   display: flex;
+   flex-direction: column;
+   margin-bottom: 20px;
+}
+
+.input-group label {
+   color: white;
+   font-weight: lighter;
+   font-size: 1.5em;
+   margin-bottom: 7px;
+}
+
+.input-group input {
+   font-size: 1.5em;
+   padding: .1em .25em;
+   background-color: hsla(201, 100%, 91%, 0.3);
+   border: 1px solid hsl(201, 100%, 6%);
+   outline: none;
+   border-radius: 5px;
+   color: white;
+   font-weight: lighter;
+}
+.input-group input::placeholder {
+   color: #d3fff3;
+}
+
+.input-group input:focus {
+   border: 1px solid hsl(201, 100%, 50%);   
+}
+
+.login-button {
+   padding: 10px 30px;
+   width: 100%;
+   border-radius: 5px;
+   background-color: hsla(201, 100%, 50%, 0.1);
+   border: 1px solid hsl(201, 100%, 50%);
+   outline: none;
+   font-size: 1.5em;
+   color: white;
+   font-weight: lighter;
+   margin-top: 20px;
+   cursor: pointer;
+}  
+
+.login-button:hover {
+   background-color: hsla(201, 100%, 50%, 0.3);
+}
+
+.login-button:focus {
+   background-color: hsla(201, 100%, 50%, 0.5);
+}

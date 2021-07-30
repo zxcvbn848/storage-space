@@ -41,13 +41,12 @@ def selectUser(**kwargs):
       connection_object = connection_pool.get_connection()
 
       if connection_object.is_connected():
-         cursor = connection_object.cursor()
+         cursor = connection_object.cursor(dictionary = True)
          cursor.execute(sql_cmd)
          result = cursor.fetchone()      
 
       if result:
-         userData = dict(zip(cursor.column_names, result))
-         return userData
+         return result
       else:
          return None
    except Exception as e:
@@ -82,7 +81,36 @@ def insertUser(**kwargs):
    except Exception as e:
       print(e)
    finally:
-      closePool(connection_object, cursor)        
+      closePool(connection_object, cursor)  
+
+def updateUser(userId, **kwargs):
+   try:
+      updateColumnAndValue = ""
+
+      for key in kwargs:
+         if type(kwargs[key]) == str:
+            updateColumnAndValue += f"{ key } = '{ kwargs[key] }', "
+         else: 
+            updateColumnAndValue += f"{ key } = { kwargs[key] }, "
+
+      updateColumnAndValue = updateColumnAndValue[:-2]
+
+      sql_cmd = f"""
+            UPDATE users 
+            SET { updateColumnAndValue }
+            WHERE id = { userId }
+            """
+
+      connection_object = connection_pool.get_connection()
+
+      if connection_object.is_connected():
+         cursor = connection_object.cursor()
+         cursor.execute(sql_cmd)                
+         connection_object.commit()            
+   except Exception as e:
+      print(e)
+   finally:
+      closePool(connection_object, cursor)  
 # ====================
 # for /api/layout (main_layout)
 def selectMainLayouts(**kwargs):

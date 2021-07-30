@@ -64,7 +64,7 @@ let signinUpModels = {
          emailElement,
          passwordElement,
          passwordCheckElement
-      }
+      };
       
       // const dataAuth = signinUpModels.dataAuth(signupElements);
 
@@ -93,16 +93,15 @@ let signinUpViews = {
       const signinSuccess = signinUpModels.signinState['ok'];
       const signinFailed = signinUpModels.signinState['error'];
       
-      const emailElement = document.getElementById('signin-email');
       const passwordElement = document.getElementById('signin-password');
    
-      if (signinSuccess) location.reload();
-      if (signinFailed) alert(signinUpModels.signinState['message']);
+      if (signinSuccess) parent.location.href = '/member';
+      if (signinFailed) {
+         alert(signinUpModels.signinState['message']);
 
-      emailElement.value = '';
-      emailElement.innerText = '';
-      passwordElement.value = '';
-      passwordElement.innerText = '';
+         passwordElement.value = '';
+         passwordElement.innerText = '';
+      }
    },
    // Signup success or not
    signupSuccessDetermine: function() {

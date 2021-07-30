@@ -5,7 +5,7 @@
    <meta http-equiv="X-UA-Compatible" content="IE=edge">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
    <title>{% block title %}{% endblock %}</title>
-   <link href="{{ url_for('static', filename='image/favicon.ico') }}" rel="shortcut icon">
+   <link href="{{ url_for('static', filename='image/Custom-Icon-Design-Flatastic-8-Keys.ico') }}" rel="shortcut icon">
    {% block css %}{% endblock %}
    <link href="{{ url_for('static', filename='css/loading-spinner.css') }}" rel="stylesheet" type="text/css" media="all">
    <link href="{{ url_for('static', filename='css/base.css') }}" rel="stylesheet" type="text/css" media="all">
@@ -17,15 +17,15 @@
    <nav>
       <ul class="link-list">
          <li class="link"><a href="/">Home</a></li>
-         <li class="link"><a href="/demo">Demo</a></li>
+         <li class="link"><a href="/signin-up" id="signin-up">Sign up/in</a></li>
          <li class="link"><a href="/member" id="member-button" class="hidden">Member</a></li>
          <li class="link"><a href id="signout-button" class="hidden">Signout</a></li>
       </ul>
       <ul class="link-list" id="item-link">
-         <li class="link"><a href="/item-list" class="">Item-List</a></li>
          <li class="link"><a href="/item-layout" class="">Item-Layout</a></li>
-         <li class="link"><a href="/add-item" class="">Add-Item</a></li>
-         <li class="link"><a href="/edit-item" class="">Edit-Item</a></li>
+         <li class="link"><a href="/item-list" class="">Item-List</a></li>
+         <!-- <li class="link"><a href="/add-item" class="">Add-Item</a></li>
+         <li class="link"><a href="/edit-item" class="">Edit-Item</a></li> -->
       </ul>
    </nav>
    {% block content %}{% endblock %}

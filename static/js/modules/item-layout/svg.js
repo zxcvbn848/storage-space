@@ -1,4 +1,4 @@
-import { patternHref, removeFuncs, changeTitle, toggleLayout } from './button.js';
+import { patternHref, removeFuncs, pattenFuncs, changeTitle, toggleLayout } from './button.js';
 
 const svgSrc = 'http://www.w3.org/2000/svg';
 
@@ -71,10 +71,6 @@ const svgModels = {
       }
 
       const src = '/api/layout';
-      console.log({
-         "main_svg": mainData,
-         "sub_svg": subDataArray,
-      });
       return fetch(src, {
             method: 'POST',
             headers: {
@@ -144,8 +140,6 @@ const svgViews = {
       });
 
       for (let subSvg of svgModels.layoutData.sub_svg) {
-         console.log(subSvg);
-
          const svgElement = document.createElementNS(svgSrc, 'svg');
          svgElement.id = subSvg.html_id;
          document.querySelector('.svg-container').appendChild(svgElement);
@@ -257,16 +251,14 @@ const svgControllers = {
       image.addEventListener('click', e => {
          if (variables.deleteMode && variables.editingMode) {
             e.target.remove();
-            if (e.target.dataset.layout) {
-               document.getElementById(e.target.dataset.layout).remove();
-               const layoutMenu = document.querySelector('.layout-menu');
-               layoutMenu.removeChild(layoutMenu.querySelector(`button[data-layout="${e.target.dataset.layout}"]`));
-            }
+            removeFuncs.removeSvg(e.target);
          }
          variables.usingSvg = e.target.parentNode;
       });
       image.addEventListener('dblclick', e => {
          variables.usingSvg = e.target.parentNode;
+
+         pattenFuncs.changePattern(null);
 
          const subItemButton = document.getElementById('sub-item');
          const menuButtons = Array.from(document.querySelector('.menu').querySelectorAll('button'));

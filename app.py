@@ -4,6 +4,7 @@ import os
 
 from api.layout import api_layout
 from api.user import api_user
+from api.setting import api_setting
 """ 
 from api.booking import api_booking
 from api.order import api_order """
@@ -11,6 +12,7 @@ from api.order import api_order """
 app = Flask(__name__)
 app.register_blueprint(api_layout, url_prefix="/api")
 app.register_blueprint(api_user, url_prefix="/api")
+app.register_blueprint(api_setting, url_prefix="/api")
 """ 
 app.register_blueprint(api_booking, url_prefix="/api")
 app.register_blueprint(api_order, url_prefix="/api")
@@ -25,9 +27,9 @@ app.config["PERMANENT_SESSION_LIFETIME"] = timedelta(days = 1)
 @app.route("/")
 def index():
 	return render_template("index.html")
-@app.route("/demo")
+@app.route("/signin-up")
 def demo():
-	return render_template("demo.html")
+	return render_template("signin-up.html")
 @app.route("/member")
 def order():
 	return render_template("member.html")
@@ -46,6 +48,6 @@ def editItem():
 	return render_template("edit-item.html")
 
 if __name__ == "__main__":
-	app.run(host = "0.0.0.0", port = 2000
+	app.run(host = "0.0.0.0", port = 3000
 		, debug = True
 	)

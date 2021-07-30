@@ -37,10 +37,10 @@ def postUser():
       emailRegExp = os.getenv("EMAIL_PATTERN")
       passwordRegExp = os.getenv("PASSWORD_PATTERN")
 
-      if password != passwordCheck:
-         return jsonify({ "error": True, "message": "Password and Password Check must be consistent." })
       if not (name and email and password and passwordCheck):
          return jsonify({ "error": True, "message": "Sign Up Falied. Name, Email, and Password are required." })
+      if password != passwordCheck:
+         return jsonify({ "error": True, "message": "Password and Password Check must be consistent." })
       
       if not (re.match(passwordRegExp, password) and re.match(emailRegExp, email)):
          return jsonify({ "error": True, "message": "Sign Up Falied, format of Email or Password is wrong." })

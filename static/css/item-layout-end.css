@@ -1,0 +1,17 @@
+html, 
+body {
+   height: 100vh;
+   overflow-y: auto;
+}
+
+/* button-container (item) */
+.menu {
+   flex-grow: 1;
+   overflow-y: auto;
+}
+
+/* layout-menu */
+.layout-menu {
+   flex-grow: 1;
+   overflow-y: auto;
+}

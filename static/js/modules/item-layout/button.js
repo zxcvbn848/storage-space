@@ -36,8 +36,20 @@ const removeFuncs = {
             document.querySelector(`#${button.id}-button`).classList.add('hidden');
          }
       }
-   }
-}
+   },
+   /* Multiple layer delete */
+   removeSvg: function(target) {
+      if (target.dataset.layout) {
+         document.getElementById(target.dataset.layout).querySelectorAll('image').forEach(image => {
+            removeFuncs.removeSvg(image);
+         });
+         document.getElementById(target.dataset.layout).remove();
+         const layoutMenu = document.querySelector('.layout-menu');
+         const layoutButton = layoutMenu.querySelector(`button[data-layout="${target.dataset.layout}"]`);
+         layoutMenu.removeChild(layoutButton);
+      }
+   },
+};
 
 const pattenFuncs = {
    changePattern: function(pattern) {

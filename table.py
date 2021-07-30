@@ -120,4 +120,15 @@ cursor.execute("""
    """
 )
 
+# cursor.execute("""
+#    CREATE TABLE IF NOT EXISTS user_to_main(
+#       id BIGINT NOT NULL AUTO_INCREMENT,
+#       user_id BIGINT NOT NULL,
+#       main_id BIGINT NOT NULL,
+#       PRIMARY KEY (id),
+#       FOREIGN KEY(user_id) REFERENCES users(id) ON DELETE CASCADE ON UPDATE CASCADE,
+#       FOREIGN KEY(main_id) REFERENCES main_layout(id) ON DELETE CASCADE ON UPDATE CASCADE) charset=utf8;
+#    """
+# )
+
 db.commit()

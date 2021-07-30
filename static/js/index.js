@@ -1,13 +1,11 @@
-import { evilButton } from './modules/index/impossibleButton.js';
-import {} from './modules/index/signin-up.js';
+// import { evilButton } from './modules/index/impossibleButton.js';
 import {} from './signin-confirm.js';
+import {} from './modules/navbar/navbar.js';
 
-evilButton.addEventListener('click', () => {
-   alert('Nice Try');
-})
+// evilButton.addEventListener('click', () => {
+//    alert('Nice Try');
+// })
 
-// upload form
-const uploadForm = document.getElementById('upload-form');
 // main
 const mainElement = document.querySelector('main');
 // goTop & goBottom
@@ -179,7 +177,7 @@ uploadForm.addEventListener('submit', e => {
    indexControllers.upload();
 }); */
 
-/* goTop.addEventListener('click', e => {
+goTop.addEventListener('click', e => {
    e.preventDefault();
 
    indexControllers.goTop();
@@ -188,4 +186,4 @@ goBottom.addEventListener('click', e => {
    e.preventDefault();
 
    indexControllers.goBottom();
-}); */
+});

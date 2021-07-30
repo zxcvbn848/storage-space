@@ -1,6 +1,3 @@
-html, body {
-   overflow: auto;
-}
 main {
    display: grid;
    grid-template-columns: 1fr 3fr 12fr 1fr;
@@ -212,8 +209,6 @@ main {
    padding: 0px;
 
    max-height: 75%;
-
-   overflow-y: auto;
 }
 
 .button-container button {
@@ -292,9 +287,6 @@ main {
    background-color: #dbe9ee;
 
    color: black;
-
-   /* TBD */
-   overflow-y: auto;
 }
 
 .layout-menu .title {
@@ -314,7 +306,8 @@ main {
    padding: 2px;
 
    color: black;
-   font-size: 1.2rem;
+   font-size: 20px;
+   line-height: calc(var(--button-px) - 3 * 2px);
 }
 
 .layout-menu button:not([disabled]):hover,

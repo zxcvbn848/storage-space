@@ -3,6 +3,7 @@ let signinConfirmModels = {
    userData: null,
    signoutState: null,
    signinCheck: function() {
+      if (parent.location.href.split('/')[parent.location.href.split('/').length - 1] === 'signin-up') return;
       if (!signinConfirmModels.userData && parent.location.href.split('/')[parent.location.href.split('/').length - 1] !== '') parent.location.href = '/';
    },
    // fetch /api/user with GET
@@ -35,10 +36,12 @@ let signinConfirmViews = {
       const signupForm = document.getElementById('signup-form');
       const signinForm = document.getElementById('signin-form');
       const mainElement = document.querySelector('main');
+      const signinupLink = document.querySelector('#signin-up');
 
       if (userData) {
          signoutButton.classList.remove('hidden');
          memberButton.classList.remove('hidden');
+         signinupLink.classList.add('hidden');
          itemLinks.forEach(link => {
             for (let i = 0; i < link.children.length; i++) link.children[i].classList.remove('hidden');
          });
@@ -46,17 +49,24 @@ let signinConfirmViews = {
             signupForm.parentNode.classList.add('hidden');
             signinForm.parentNode.classList.add('hidden');
             
-            const textElement = document.createElement('div');
-            textElement.classList.add('text');
-            textElement.textContent = `
-               Welcome, ${userData.name}.
-               You can create your first storage record!
-            `;
-            mainElement.appendChild(textElement);
+            // const nameElement = document.createElement('div');
+            // const textElement = document.createElement('div');
+            // nameElement.classList.add('name-text');
+            // textElement.classList.add('text');
+            // nameElement.textContent = `
+            //    Welcome, ${userData.name}.
+            // `;
+            // textElement.textContent = `
+            //    You can create your first storage record!
+            //    (Links are shown on top of screen.)
+            // `;
+            // mainElement.appendChild(nameElement);
+            // mainElement.appendChild(textElement);
          }
       } else {
          signoutButton.classList.add('hidden');
          memberButton.classList.add('hidden');
+         signinupLink.classList.remove('hidden');
          itemLinks.forEach(link => {
             for (let i = 0; i < link.children.length; i++) link.children[i].classList.add('hidden');
          });

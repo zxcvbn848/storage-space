@@ -8,51 +8,30 @@
 
 {% block content %}
 <header>
-   <div class="title">Where Is My</div>
-   <div class="evil"><button id="evil-button">Key?</button></div>
+   <div class="title">Where Is My Key?</div>
+   <!-- <div class="evil"><button id="evil-button">Key?</button></div> -->
    <div class="slogan">
       Do you bother about remembering where items are? (e.g. naughty key or wallet)<br>
       To record it once and for all!
    </div>
 </header>
 <main>
-   <div class="container">
-      <div class="login-container">
-         <form action="" id="signup-form">
-            <div class="input-group">
-               <label for="signup-name">Name</label>
-               <input type="text" name="" id="signup-name" placeholder="Name here." onfocus="this.select();" required>
-            </div>            
-            <div class="input-group">
-               <label for="signup-email">Email</label>
-               <input type="email" name="" id="signup-email" placeholder="Email here." onfocus="this.select();" pattern="^\w+((-\w+)|(\.\w+))*@[A-Za-z0-9]+((\.|-)[A-Za-z0-9]+)*\.[A-Za-z]{2,6}$" required>
-            </div>
-            <div class="input-group">
-               <label for="signup-password">Password</label>
-               <input type="password" name="" id="signup-password" placeholder="Min(4). UC, LC, Num." onfocus="this.select();" minlength="4" pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\s).*$" required>
-            </div>
-            <div class="input-group">
-               <label for="signup-password-check">Password Check</label>
-               <input type="password" name="" id="signup-password-check" placeholder="Same as Password" onfocus="this.select();" minlength="4" pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\s).*$" required>
-            </div>     
-            <button type="submit" class="login-button">Sign Up</button>
-         </form>
-      </div>
-   </div>   
-   <div class="container">
-      <div class="login-container">
-         <form action="" id="signin-form">
-            <div class="input-group">
-               <label for="signin-email">Email</label>
-               <input type="email" name="" id="signin-email" placeholder="Email here." onfocus="this.select();" pattern="^\w+((-\w+)|(\.\w+))*@[A-Za-z0-9]+((\.|-)[A-Za-z0-9]+)*\.[A-Za-z]{2,6}$" required>
-            </div>
-            <div class="input-group">
-               <label for="signin-password">Password</label>
-               <input type="password" name="" id="signin-password" placeholder="Min(4). UC, LC, Num." onfocus="this.select();" minlength="4" pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\s).*$" required>
-            </div>
-            <button type="submit" class="login-button">Sign In</button>
-         </form>
+   <div class="result-area">
+      <div class="username">Andy</div>
+      <div class="image-area">
+         <div class="image"><img src="{{ url_for('static', filename='image/demo/Andy-demo-1.jpg') }}" alt="收納紀錄"></div>
+         <div class="image"><img src="{{ url_for('static', filename='image/demo/Andy-demo-2.jpg') }}" alt="收納紀錄"></div>
       </div>
    </div>
+   <div class="result-area"></div>
+   <div class="result-area"></div>
+   <div class="result-area"></div>
+   <div class="result-area"></div>
 </main>
+<div class="go">
+   <ul>
+      <li><button id="goTop">Top &uarr;</button></li>
+      <li><button id="goBottom">Bottom &darr;</button></li>
+   </ul>
+</div>
 {% endblock %}

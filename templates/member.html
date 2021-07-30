@@ -3,23 +3,48 @@
 {% block title %}Member{% endblock %}
 
 {% block css %}<link href="{{ url_for('static', filename='css/member.css') }}" rel="stylesheet" type="text/css" media="all">{% endblock %}
+{% block cssEnd %}<link href="{{ url_for('static', filename='css/member-end.css') }}" rel="stylesheet" type="text/css" media="all">{% endblock %}
 
 {% block js %}<script type="module" src="{{ url_for('static', filename='js/member.js') }}"></script>{% endblock %}
 
 {% block content %}
-<header>
-   <div class="title">發表一篇圖文</div>
-   <form class="upload" enctype="multipart/form-data" id="upload-form">
-      <div class="input-area">
-         <label for="uploadText">文字內容</label>
-         <input type="text" placeholder="請加入圖片描述" id="uploadText" name="uploadText" required>
-         <label for="uploadImage">圖片檔案</label>
-         <input type="file" accept="image/gif, image/jpeg, image/png" name="uploadImage" id="uploadImage" required>
-      </div>
-      <button type="submit">送出</button>
-   </form>
-</header>
+<div class="sub-nav">
+   <ul class="button-list">
+      <li class="button"><button id="room" class="focus">Room</button></li>
+      <li class="button"><button id="setting">Setting</button></li>
+   </ul>
+</div>
 <main>
+   <div class="setting-container hidden" data-subNav="setting">
+      <ul>
+         <li><button id="account">Account</button></li>
+         <li><button id="password">Password</button></li>
+      </ul>
+      <hr class="vertical">
+      <div class="setting">
+         <div class="setting-part" data-setting="account">
+            <div class="title" data-user="name"></div>
+            <hr>
+            <div class="title" data-user="email"></div>
+         </div>
+         <form class="setting-part hidden" data-setting="password">
+            <div class="title">Change Password</div>
+            <hr>
+            <label for="old-password">Old Password</label>
+            <input type="password" name="" id="old-password" placeholder="Min(4). UC, LC, Num." onfocus="this.select();" minlength="4" pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\s).*$" required>
+            <hr>
+            <label for="new-password">New Password</label>
+            <input type="password" name="" id="new-password" placeholder="Min(4). UC, LC, Num." onfocus="this.select();" minlength="4" pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\s).*$" required>
+            <hr>
+            <label for="new-password-confirm">New Password Confirm</label>
+            <input type="password" name="" id="new-password-confirm" placeholder="Min(4). UC, LC, Num." onfocus="this.select();" minlength="4" pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\s).*$" required>
+            <button type="submit">Change Password</button>
+         </form>
+      </div>
+   </div>
+   <div class="room-container" data-subNav="room">
+      <div class="title">Room List</div>
+      <button id="new-room">New Room</button>
+   </div>
 </main>
-<a href="#" class="goTop">Top</a>
 {% endblock %}
