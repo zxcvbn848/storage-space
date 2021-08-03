@@ -3,10 +3,10 @@ sys.path.append("..")
 
 from flask import request, Blueprint, jsonify, session
 from dotenv import load_dotenv
-import os
-import re
+import os, re
 
 from mysql_connect import selectUser, insertUser
+from use_bcrypt import *
 
 load_dotenv()
 
@@ -49,8 +49,11 @@ def postUser():
       if userVerified:
          return jsonify({ "error": True, "message": "Sign Up Falied, Email have been used or other reason" })
 
-      insertUser(name = name, email = email, password = password)
-      updatedUser = selectUser(email = email, password = password)
+      # Hash and Salt Password
+      hashedPassword = hashPassword.hashSalt(password)
+
+      insertUser(name = name, email = email, password = hashedPassword)
+      updatedUser = selectUser(email = email, password = hashedPassword)
       if updatedUser:
          return jsonify({ "ok": True })
       else:
@@ -74,15 +77,19 @@ def patchUser():
       if not (re.match(passwordRegExp, password) and re.match(emailRegExp, email)):
          return jsonify({ "error": True, "message": "Sign In Falied, format of Email or Password is wrong." })
 
-      user = selectUser(email = email, password = password)
-
+      user = selectUser(email = email)
       if user:
-         session["user"] = {
-            "id": user["id"],
-            "name": user["name"],
-            "email": user["email"]
-         }
-         return jsonify({ "ok": True })
+         userHashPassword = selectUser(email = email)["password"]
+         # Check Password
+         if hashPassword.hashSaltCheck(password, userHashPassword):
+            session["user"] = {
+               "id": user["id"],
+               "name": user["name"],
+               "email": user["email"]
+            }
+            return jsonify({ "ok": True })
+         else:
+            return jsonify({ "error": True, "message": "Sign In Falied, Email or Password is wrong or other reason." })
       else:
          return jsonify({ "error": True, "message": "Sign In Falied, Email or Password is wrong or other reason." })
    except Exception as e:
