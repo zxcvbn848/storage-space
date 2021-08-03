@@ -17,7 +17,7 @@
 <main>
    <div class="setting-container hidden" data-subNav="setting">
       <ul>
-         <li><button id="account">Account</button></li>
+         <li><button id="account" class="focus">Account</button></li>
          <li><button id="password">Password</button></li>
       </ul>
       <hr class="vertical">
@@ -43,8 +43,9 @@
       </div>
    </div>
    <div class="room-container" data-subNav="room">
-      <div class="title">Room List</div>
-      <button id="new-room">New Room</button>
+      <div class="title" id="room-list"></div>
+      <hr class="room">
+      <button id="new-room" class="hidden">New Room</button>
    </div>
 </main>
 {% endblock %}

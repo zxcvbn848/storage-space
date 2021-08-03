@@ -86,7 +86,7 @@ const events = {
             if (yes) {
                removeFuncs.removeAllChildNodes(variables.usingSvg);
                pattenFuncs.changePattern(null);
-               variables.usingSvg.setAttribute('style', `background: #e0e5df;`);
+               variables.usingSvg.setAttribute('style', `background: #FFFFFF;`);
                document.querySelector('#svg-image-invert').value = 0;
                document.documentElement.style.setProperty('--svg-image-invert', '0');
          
@@ -108,7 +108,7 @@ const events = {
          if (yes) {
             removeFuncs.removeAllChildNodes(variables.usingSvg);
             pattenFuncs.changePattern(null);
-            variables.usingSvg.setAttribute('style', `background: #e0e5df;`);
+            variables.usingSvg.setAttribute('style', `background: #FFFFFF;`);
             document.querySelector('#svg-image-invert').value = 0;
             document.documentElement.style.setProperty('--svg-image-invert', '0');
       

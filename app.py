@@ -12,7 +12,7 @@ from api.order import api_order """
 app = Flask(__name__)
 app.register_blueprint(api_layout, url_prefix="/api")
 app.register_blueprint(api_user, url_prefix="/api")
-app.register_blueprint(api_setting, url_prefix="/api")
+app.register_blueprint(api_setting, url_prefix="/api/setting")
 """ 
 app.register_blueprint(api_booking, url_prefix="/api")
 app.register_blueprint(api_order, url_prefix="/api")

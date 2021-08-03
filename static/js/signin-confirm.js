@@ -122,3 +122,5 @@ const memberButton = document.getElementById('member-button');
 /* signout */
 const signoutButton = document.getElementById('signout-button');
 signoutButton.addEventListener('click', signinConfirmControllers.signoutCheck);
+
+export { signinConfirmControllers }

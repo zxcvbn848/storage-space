@@ -1,9 +1,8 @@
-/* main */
-main {
+/* search form */
+header {
    display: flex;
-   flex-direction: column;
-   justify-content: flex-start;
-   align-items: flex-start;
+   justify-content: center;
+   align-items: center;
 
    gap: 10px;
 
@@ -12,35 +11,36 @@ main {
    padding: 50px 30px;
 
    width: 100%;
-   min-height: calc(100vh - var(--nav-height));
    /* min-height: 100vh; */
 
-   background-color: #eff6ee;
+   background-color: #FFFFFF;
 }
-
-main * {
+header * {
    color: black;
-}
-
-main form {
-   display: grid;
-   grid-template-columns: 4fr 1fr 1fr;
-   grid-row: 1fr;
-
-   margin: 0px auto;
-   margin-bottom: 50px;
-}
-main form * {
    font-size: 30px;
 }
-main form input {
+header form {
+   display: flex;
+   justify-content: center;
+   align-items: center;
+
+   margin: 0px auto;
+}
+header form input {
    border: none;
+   outline: none;
    border-radius: 10px 0px 0px 10px;
+   background: rgb(235, 235, 235);
+
+   padding: 0px 10px;
+
+   height: 60px;
 }
-main form select {
-   padding: 5px;
+header form input:hover,
+header form input:focus {
+   border: 2px ridge green;
 }
-main form .search-icon {
+header form .search-icon {
    width: 60px;
    height: 60px;
 
@@ -51,43 +51,127 @@ main form .search-icon {
    background-color: #3e885b;
    outline: none;
 }
-main form .search-icon img {
+header form .search-icon:hover {
+   opacity: 0.7;
+}
+header form .search-icon img {
    width: 100%;
    height: 100%;
 
    filter: invert(100%);
 }
 
-main .layer {
+/* main */
+main {
+   display: flex;
+   justify-content: flex-start;
+   align-items: flex-start;
+
+   gap: 50px;
+
+   margin: 0px auto;
+   padding: 50px 30px;
+
+   width: 100%;
+   min-height: calc(100vh - var(--nav-height));
+   /* min-height: 100vh; */
+
+   background-color: #FFFFFF;
+}
+
+main * {
+   color: black;
+
+   user-select: text;
+}
+/* item-container */
+/* main .item-container {
+   display: grid;
+   grid-template-columns: repeat(3, 1fr);
+   justify-content: center;
+   align-items: center;
+
+   gap: 20px;
+
+   padding: 10px;
+
+   width: 30%;
+
+   background-color: #f9edcc;
+   border-radius: 10px;
+
+   max-height: 65vh;
+   overflow-x: hidden;
+   overflow-y: scroll;
+}
+main .item-container .item {
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   align-items: flex-start;
+
+   gap: 20px;
+
+   width: 100%;
+
+   background-color: #f9edcc;
+}
+main .item-container .item .item-name {
+   width: 70px;
+   height: 20px;
+
+   text-align: start;
+   white-space: nowrap;
+   font-size: 1.5rem;
+}
+main .item-container .item .item-image {
+}
+main .item-container .item .item-image img {
+   width: 70px;
+   height: 70px;
+} */
+
+/* layer-container */
+main .layer-container {
+   display: flex;
+   flex-direction: column;
+   justify-content: flex-start;
+   align-items: flex-start;
+
+   gap: 10px;
+
+   width: 100%;
+
+   padding-left: 30%;
+
+   background-color: #FFFFFF;
+}
+
+/* layer of list */
+main .layer-container .layer {
    display: flex;
    flex-direction: column;
    justify-content: center;
    align-items: center;
 
-   background-color: white;
+   background-color: #fbf9ff;
+   border-radius: 10px;
 
-   padding: 10px;
-}
+   padding: 20px;
 
-main .layer.second {
-   margin-top: 10px;
-   margin-left: calc(var(--layer-margin) * 1);
-}
-main .layer.third {
-   margin-top: 10px;
-   margin-left: calc(var(--layer-margin) * 2);
-}
-main .layer.fourth {
-   margin-top: 10px;
-   margin-left: calc(var(--layer-margin) * 3);
+   min-width: 60%;
+
+   font-size: var(--border-px);
 }
 
-main .layer .button-area {
+main .layer-container .layer .button-area {
    display: flex; flex-wrap: nowrap;
+
+   gap: 30px;
 
    width: 100%;
 }
-main .layer .button-area button {
+main .layer-container .layer .button-area button {
    position: relative;
    left: 0px;
 
@@ -95,22 +179,45 @@ main .layer .button-area button {
    height: 0px;
 
    border-top: var(--border-px) solid #100b00;
-   border-left: var(--border-px) solid white;
+   border-left: var(--border-px) solid #fbf9ff;
    border-bottom: 0px;
-   border-right: var(--border-px) solid white;
+   border-right: var(--border-px) solid #fbf9ff;
 
    padding: 0;
 }
-main .layer .button-area .layer-name {   
+main .layer-container .layer .button-area button:hover,
+main .layer-container .layer .button-area button.focus {
+   color: white;
+}
+main .layer-container .layer .button-area .layer-name {   
    font-size: var(--border-px);
 }
-main .layer ul {
-   margin-left: 10px;
-}
-main .layer ul li {
-   font-size: var(--border-px);
+main .layer-container .layer .button-area img {
+   width: 50px;
+   height: 50px;
 }
 
+
+main .layer-container .layer ul {
+   margin: 0;
+   padding-left: 50px;
+
+   width: 100%;
+}
+main .layer-container .layer ul li {
+   font-size: var(--border-px);
+   list-style: none;
+
+   margin: 20px 0px;
+   margin-left: 50px;
+}
+main .layer-container .layer ul li img {
+   width: 50px;
+   height: 50px;
+   margin-left: 10px;
+}
+
+/* Go Top & Bottom */
 .go ul {
    display: flex;
    flex-direction: column;

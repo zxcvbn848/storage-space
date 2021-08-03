@@ -7,58 +7,77 @@
 {% block js %}<script type="module" src="{{ url_for('static', filename='js/item-list.js') }}"></script>{% endblock %}
 
 {% block content %}
-<main>
-   <form>
-      <input type="text" id="keyword" name="keyword">
-      <select name="" id="">
-         <option value="">Date</option>
-         <option value="">Place</option>
-         <option value="">Name</option>
-         <option value="">Tags</option>
-      </select>
+<header>
+   <form id="search-form" class="hidden">
+      <input type="text" id="keyword" name="keyword" placeholder="Search Item">
       <button class="search-icon">
          <img src="{{ url_for('static', filename='image/transparency.png') }}" alt="">
       </button>
    </form>
-   <div class="layer first">
-      <div class="button-area">
-         <button id="date"></button>
-         <label for="date" class="layer-name">Date</label>
+   <div class="title">Your Item List</div>
+</header>
+<main>
+   <!-- <div class="item-container">
+      <div class="item">
+         <div class="item-name">desk</div>
+         <div class="item-image"><img src="{{ url_for('static', filename='image/main-item/desk.png') }}" alt="Error" srcset=""></div>
+      </div>      
+      <div class="item">
+         <div class="item-name">drawers</div>
+         <div class="item-image"><img src="{{ url_for('static', filename='image/main-item/drawers.png') }}" alt="Error" srcset=""></div>
       </div>
-      <ul>
-         <li>Today</li>
-         <li>Yesterday</li>
-      </ul>
-   </div>
-   <div class="layer second">
-      <div class="button-area">
-         <button id="place"></button>
-         <label for="place" class="layer-name">Place</label>
+      <div class="item">
+         <div class="item-name">double bed</div>
+         <div class="item-image"><img src="{{ url_for('static', filename='image/main-item/double bed.png') }}" alt="Error" srcset=""></div>
       </div>
-      <ul>
-         <li>Table</li>
-         <li>Drawer</li>
-      </ul>
-   </div>
-   <div class="layer third">
-      <div class="button-area">
-         <button id="item"></button>
-         <label for="item" class="layer-name">Item</label>
+      <div class="item">
+         <div class="item-name">wardrobe</div>
+         <div class="item-image"><img src="{{ url_for('static', filename='image/main-item/wardrobe.png') }}" alt="Error" srcset=""></div>
       </div>
-      <ul>
-         <li>Key</li>
-         <li>Phone</li>
-      </ul>
-   </div>
-   <div class="layer fourth">
-      <div class="button-area">
-         <button id="tags"></button>
-         <label for="tags" class="layer-name">Tags</label>
+      <div class="item">
+         <div class="item-name">door</div>
+         <div class="item-image"><img src="{{ url_for('static', filename='image/main-item/door.png') }}" alt="Error" srcset=""></div>
       </div>
-      <ul>
-         <li>New Item</li>
-         <li>Important</li>
-      </ul>
+      <div class="item">
+         <div class="item-name">workspace</div>
+         <div class="item-image"><img src="{{ url_for('static', filename='image/main-item/workspace.png') }}" alt="Error" srcset=""></div>
+      </div>
+      <div class="item">
+         <div class="item-name">sofa</div>
+         <div class="item-image"><img src="{{ url_for('static', filename='image/main-item/sofa.png') }}" alt="Error" srcset=""></div>
+      </div>
+      <div class="item">
+         <div class="item-name">tv stand</div>
+         <div class="item-image"><img src="{{ url_for('static', filename='image/main-item/tv stand.png') }}" alt="Error" srcset=""></div>
+      </div>
+      <div class="item">
+         <div class="item-name">shower</div>
+         <div class="item-image"><img src="{{ url_for('static', filename='image/main-item/shower.png') }}" alt="Error" srcset=""></div>
+      </div>
+   </div> -->
+   <div class="layer-container">
+      <!-- <div class="layer">
+         <div class="button-area">
+            <button id="desk"></button>
+            <label for="desk" class="layer-name">Desk</label>
+            <img src="{{ url_for('static', filename='image/main-item/desk.png') }}" alt="">
+         </div>
+         <ul>
+            <li>
+               <div class="button-area">
+                  <button id="box"></button>
+                  <label for="box" class="layer-name">box</label>
+               </div>
+               <ul>
+                  <li>backpack
+                     <img src="{{ url_for('static', filename='image/sub-item/backpack.png') }}" alt="">
+                  </li>
+                  <li>backpack</li>
+               </ul>
+            </li>
+            <li>notebook</li>
+         </ul>
+      </div> -->
    </div>
 </main>
 <div class="go">

@@ -28,6 +28,7 @@ const svgModels = {
       const mainObjectArray = [];
       mainSvg.querySelectorAll('image').forEach(object => {
          const propsOfObject = {
+            name: object.getAttribute('href').split('/')[object.getAttribute('href').split('/').length - 1].replace('.png', ''),
             x: parseInt(object.getAttribute('x'), 10),
             y: parseInt(object.getAttribute('y'), 10),
             width: parseInt(object.getAttribute('width'), 10),
@@ -53,6 +54,7 @@ const svgModels = {
          const subObjectArray = [];
          subSvg.querySelectorAll('image').forEach(object => {
             const propsOfObject = {
+               name: object.getAttribute('href').split('/')[object.getAttribute('href').split('/').length - 1].replace('.png', ''),
                x: parseInt(object.getAttribute('x'), 10),
                y: parseInt(object.getAttribute('y'), 10),
                width: parseInt(object.getAttribute('width'), 10),
@@ -81,10 +83,7 @@ const svgModels = {
                "sub_svg": subDataArray,
             })
          })
-            .then(response => response.json())
-            .then(result => {
-               alert(result.message);
-            });
+            .then(response => response.json());
    },
 };
 
@@ -102,8 +101,8 @@ const svgViews = {
 
       document.querySelector('.svg-container').appendChild(mainSvgElement);
 
-      if (svgModels.layoutData.main_svg.object) {
-         for (let object of svgModels.layoutData.main_svg.object) {      
+      if (svgModels.layoutData.main_svg.object_array) {
+         for (let object of svgModels.layoutData.main_svg.object_array) {      
             const imageObject = {
                'x': object.x, 
                'y': object.y,

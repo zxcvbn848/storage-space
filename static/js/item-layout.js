@@ -69,11 +69,19 @@ const saveButton = document.querySelector('button#save');
 saveButton.addEventListener('click', e => {
    e.preventDefault();
 
-   svgModels.fetchPostLayout();
+   svgModels.fetchPostLayout()
+      .then(result => {
+         alert(result.message);
+      })
+      .then(svgModels.postLayoutState = null);
 })
 document.addEventListener('keydown', e => {
    if (e.key === 'S') {
-      svgModels.fetchPostLayout();
+      svgModels.fetchPostLayout()      
+         .then(result => {
+            alert(result.message);
+         })
+         .then(svgModels.postLayoutState = null);
    }
 });
 
@@ -106,9 +114,11 @@ document.querySelector('.layout-menu').querySelectorAll('button').forEach(button
    });
 });
 
-// /* onbeforeunload */
-// window.addEventListener('beforeunload', e => {
-//    e.preventDefault();
-//    /* Auto Save */
-//    svgModels.fetchPostLayout();
-// });
+/* Auto Save */
+/* onbeforeunload */
+window.addEventListener('beforeunload', e => {
+   svgModels.fetchPostLayout();
+   e.returnValue = '';
+// TBD: signout issue
+   // signinConfirmControllers.signout();
+});

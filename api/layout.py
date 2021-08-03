@@ -1,3 +1,4 @@
+import re
 import sys
 sys.path.append("..")
 
@@ -8,6 +9,36 @@ from mysql_connect import *
 
 api_layout = Blueprint('api_layout', __name__)
 
+# TBD: For search item recursion
+def searchRecursion(allSubSvgs, keyword, mainId, subSvgList):
+	# Find subSvg that contains keyword object
+	searchedSubs = selectObjectToSub(keyword, mainId)
+	if not searchedSubs:
+		return
+	print(searchedSubs)
+
+	if allSubSvgs:
+		for subSvg in allSubSvgs:
+			# Same layer of Keyword
+			for searchedSub in searchedSubs:
+				if subSvg["html_id"] == searchedSub["html_id"]:
+					subObjects = selectSubToObjects(subSvg["sub_id"])
+
+					subObjectList = []
+					if subObjects:
+						for object in subObjects:
+							# Above layer of keyword
+							subObjectList.append(object)
+							searchRecursion(allSubSvgs, object["name"], mainId, subSvgList)
+
+					subSvgDict = {
+						"html_id": subSvg["html_id"],
+						"image": subSvg["image"],
+						"object_array" : subObjectList
+					}
+					subSvgList.append(subSvgDict)
+
+# For all item
 @api_layout.route("/layouts", methods=["GET"])
 def getLayouts(): 
 	try:
@@ -21,11 +52,11 @@ def getLayouts():
 			mainId = selectMainLayout(user_id = userId)["id"]
 			mainObjectsList = selectMainToObjects(mainId)
 
-			subSvgs = selectSubLayouts(mainId)
+			allSubSvgs = selectSubLayouts(mainId)
 			
 			subSvgList = []
-			if subSvgs:
-				for subSvg in subSvgs:
+			if allSubSvgs:
+				for subSvg in allSubSvgs:
 					subObjects = selectSubToObjects(subSvg["sub_id"])
 					subObjectList = []
 					if subObjects:
@@ -35,14 +66,14 @@ def getLayouts():
 					subSvgDict = {
 						"html_id": subSvg["html_id"],
 						"image": subSvg["image"],
-						"object_array" : subObjectList,
+						"object_array" : subObjectList
 					}
 					subSvgList.append(subSvgDict)
 
 			data = {
 				"main_svg": {
 					"html_id": mainHtmlId,
-					"object": mainObjectsList
+					"object_array": mainObjectsList
 				},
 				"sub_svg": subSvgList
 			}
@@ -86,6 +117,43 @@ def getSubLayout(id):
 		logging.error(e)
 		return jsonify({ "error": True, "message": "Server Internal Error" })
 
+# For search item
+@api_layout.route("/layout", methods=["GET"])
+def getLayout():
+	try:
+		if "user" not in session:
+			return jsonify({ "error": True, "message": "Please sign in first." })
+
+		keyword = request.args.get("keyword").replace(" ", "%20")
+		userId = session["user"]["id"]
+		
+		if selectMainLayout(user_id = userId):
+			mainHtmlId = selectMainLayout(user_id = userId)["html_id"]
+			mainId = selectMainLayout(user_id = userId)["id"]
+			mainObjectsList = selectMainToObjects(mainId)
+
+			allSubSvgs = selectSubLayouts(mainId)
+
+			subSvgList = []
+			searchRecursion(allSubSvgs, keyword, mainId, subSvgList)
+			
+			data = {
+				"main_svg": {
+					"html_id": mainHtmlId,
+					"object_array": mainObjectsList
+				},
+				"sub_svg": subSvgList
+			}
+			if data["main_svg"]["html_id"]:
+				return jsonify({ "data": data })
+			else:
+				return jsonify({ "data": None })
+		else:
+			return jsonify({ "data": None })
+	except Exception as e:
+		logging.error(e)
+		return jsonify({ "error": True, "message": "Server Internal Error" })
+
 @api_layout.route("/layout", methods=["POST"])
 def postLayout(): 
 	try:
@@ -106,8 +174,8 @@ def postLayout():
 
 		for object in variables.mainSvgObjectsList:
 			mainId = selectMainLayout(user_id = variables.userId)["id"]
-			insertObjects(x = object["x"], y = object["y"], width = object["width"], height = object["height"], href = object["href"], data_layout = object["data_layout"])
-			insertedObjectId = selectObject(x = object["x"], y = object["y"], width = object["width"], height = object["height"], href = object["href"], data_layout = object["data_layout"])["id"]
+			insertObjects(name = object["name"], x = object["x"], y = object["y"], width = object["width"], height = object["height"], href = object["href"], data_layout = object["data_layout"])
+			insertedObjectId = selectObject(name = object["name"], x = object["x"], y = object["y"], width = object["width"], height = object["height"], href = object["href"], data_layout = object["data_layout"])["id"]
 			insertMainToObjects(main_id = mainId, object_id = insertedObjectId)
 	
 		insertedMainLayout = selectMainLayout(user_id = variables.userId)
@@ -131,8 +199,8 @@ def postLayout():
 						subBoolean = False
 				if subSvg["object_array"]:
 					for object in subSvg["object_array"]:
-						insertObjects(x = object["x"], y = object["y"], width = object["width"], height = object["height"], href = object["href"], data_layout = object["data_layout"])
-						insertedObjectId = selectObject(x = object["x"], y = object["y"], width = object["width"], height = object["height"], href = object["href"], data_layout = object["data_layout"])["id"]
+						insertObjects(name = object["name"], x = object["x"], y = object["y"], width = object["width"], height = object["height"], href = object["href"], data_layout = object["data_layout"])
+						insertedObjectId = selectObject(name = object["name"], x = object["x"], y = object["y"], width = object["width"], height = object["height"], href = object["href"], data_layout = object["data_layout"])["id"]
 						insertSubToObjects(sub_id = subId, object_id = insertedObjectId)
 
 			insertedSubLayouts = selectSubLayouts(insertedMainLayout["id"])

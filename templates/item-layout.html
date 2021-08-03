@@ -8,12 +8,13 @@
 {% block js %}<script type="module" src="{{ url_for('static', filename='js/item-layout.js') }}"></script>{% endblock %}
 
 {% block content %}
+<!-- <div class="alert">Saving...</div> -->
 <main>
    <div class="menu">
       <div class="title">Menu</div>
       <button id="mode" data-title="Mode">Mode</button>
-      <button id="main-item" data-title="Main Item" ><img src="{{ url_for('static', filename='image/main-item/002-desk.png') }}" alt="" srcset=""></button>
-      <button id="sub-item" data-title="Sub Item"><img src="{{ url_for('static', filename='image/sub-item/key.png') }}" alt="" srcset=""></button>
+      <button id="main-item" data-title="Furniture" ><img src="{{ url_for('static', filename='image/main-item/desk.png') }}" alt="" srcset=""></button>
+      <button id="sub-item" data-title="Item"><img src="{{ url_for('static', filename='image/sub-item/key.png') }}" alt="" srcset=""></button>
       <button id="setting" data-title="Setting"><img src="{{ url_for('static', filename='image/setting/Windows_Settings_app_icon.png') }}" alt="" srcset=""></button>
       <button id="delete"><img src="{{ url_for('static', filename='image/setting/eraser.png') }}" alt="" srcset=""></button>
       <button id="cancel">Cancel</button>
@@ -21,14 +22,14 @@
       <button id="save">Save</button>
    </div>
    <div class="layout-setting">
-      <div class="title">Main Item</div>
+      <div class="title">Furniture</div>
       <div class="button-container mode hidden" id="mode-button">      
          <button id="edit-mode">Edit</button>
          <button id="read-mode">Read</button>
       </div>      
       <div class="button-container setting hidden" id="setting-button">
          <div class="input-area">
-            <input type="color" name="svg-color" id="svg-color" value="#e0e5df">
+            <input type="color" name="svg-color" id="svg-color" value="#FFFFFF">
          </div>         
          <div class="input-area">
             <input type="number" name="svg-image-invert" id="svg-image-invert" min="0" max="100" value="0">
@@ -38,16 +39,16 @@
          <!-- <button><img src="{{ url_for('static', filename='image/setting/parquet-003.png') }}" alt="Error" srcset=""></button> -->
       </div>
       <div class="button-container" id="main-item-button">
-         <button><img src="{{ url_for('static', filename='image/main-item/002-desk.png') }}" alt="Error" srcset=""></button>         
-         <button><img src="{{ url_for('static', filename='image/main-item/019-drawers.png') }}" alt="Error" srcset=""></button>
-         <button><img src="{{ url_for('static', filename='image/main-item/014-double bed.png') }}" alt="Error" srcset=""></button>
-         <button><img src="{{ url_for('static', filename='image/main-item/028-wardrobe.png') }}" alt="Error" srcset=""></button>
-         <button><img src="{{ url_for('static', filename='image/main-item/009-door.png') }}" alt="Error" srcset=""></button>
-         <button><img src="{{ url_for('static', filename='image/main-item/020-workspace.png') }}" alt="Error" srcset=""></button>
-         <button><img src="{{ url_for('static', filename='image/main-item/016-sofa.png') }}" alt="Error" srcset=""></button>
-         <button><img src="{{ url_for('static', filename='image/main-item/008-tv stand.png') }}" alt="Error" srcset=""></button>
-         <button><img src="{{ url_for('static', filename='image/main-item/010-kitchen cabinet.png') }}" alt="Error" srcset=""></button>
-         <button><img src="{{ url_for('static', filename='image/main-item/refrigerator.png') }}" alt="Error" srcset=""></button>
+         <button><img src="{{ url_for('static', filename='image/main-item/desk.png') }}" alt="Error" srcset=""></button>         
+         <button><img src="{{ url_for('static', filename='image/main-item/drawers.png') }}" alt="Error" srcset=""></button>
+         <button><img src="{{ url_for('static', filename='image/main-item/double bed.png') }}" alt="Error" srcset=""></button>
+         <button><img src="{{ url_for('static', filename='image/main-item/wardrobe.png') }}" alt="Error" srcset=""></button>
+         <button><img src="{{ url_for('static', filename='image/main-item/door.png') }}" alt="Error" srcset=""></button>
+         <button><img src="{{ url_for('static', filename='image/main-item/workspace.png') }}" alt="Error" srcset=""></button>
+         <button><img src="{{ url_for('static', filename='image/main-item/sofa.png') }}" alt="Error" srcset=""></button>
+         <button><img src="{{ url_for('static', filename='image/main-item/tv stand.png') }}" alt="Error" srcset=""></button>
+         <!-- <button><img src="{{ url_for('static', filename='image/main-item/kitchen cabinet.png') }}" alt="Error" srcset=""></button> -->
+         <!-- <button><img src="{{ url_for('static', filename='image/main-item/refrigerator.png') }}" alt="Error" srcset=""></button> -->
          <button><img src="{{ url_for('static', filename='image/main-item/shower.png') }}" alt="Error" srcset=""></button>
          <!-- <button><img src="{{ url_for('static', filename='image/main-item/shower.png') }}" alt="Error" srcset=""></button>
          <button><img src="{{ url_for('static', filename='image/main-item/shower.png') }}" alt="Error" srcset=""></button> -->

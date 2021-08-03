@@ -1,7 +1,3 @@
-body {
-   /* background: no-repeat center/100% url("../image/page__zh_tw_16262325771560963218.jpeg"); */
-}
-
 html, body {
    overflow-x: hidden;
    overflow-y: auto;
@@ -65,7 +61,7 @@ header .slogan {
 }
 
 /* main */
-main {
+/* main {
    display: grid;
    grid-template-columns: repeat(2, 1fr);
    grid-auto-rows: 500px;
@@ -79,7 +75,19 @@ main {
    margin-top: calc(var(--nav-height) + 60px);
 
    min-height: calc(100vh - var(--nav-height) - 60px * 2);
-   /* min-height: 100vh; */
+} */
+main {
+   display: flex;
+   justify-content: center;
+   align-items: center;
+
+   width: 1200px;
+   max-width: 80%;
+
+   margin: 0px auto;
+   margin-top: calc(var(--nav-height) + 60px);
+
+   /* min-height: calc(100vh - var(--nav-height) - 60px * 2); */
 }
 
 main * {

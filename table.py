@@ -60,6 +60,7 @@ cursor.execute("""
 cursor.execute("""
    CREATE TABLE IF NOT EXISTS objects(
       id BIGINT NOT NULL AUTO_INCREMENT,
+      name VARCHAR(255) NOT NULL,
       x BIGINT NOT NULL,
       y BIGINT NOT NULL,
       width BIGINT NOT NULL,

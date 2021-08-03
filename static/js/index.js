@@ -9,8 +9,8 @@ import {} from './modules/navbar/navbar.js';
 // main
 const mainElement = document.querySelector('main');
 // goTop & goBottom
-const goTop = document.querySelector('#goTop'); 
-const goBottom = document.querySelector('#goBottom'); 
+// const goTop = document.querySelector('#goTop'); 
+// const goBottom = document.querySelector('#goBottom'); 
 
 // indexModels
 /* let indexModels = {
@@ -177,13 +177,13 @@ uploadForm.addEventListener('submit', e => {
    indexControllers.upload();
 }); */
 
-goTop.addEventListener('click', e => {
-   e.preventDefault();
+// goTop.addEventListener('click', e => {
+//    e.preventDefault();
 
-   indexControllers.goTop();
-});
-goBottom.addEventListener('click', e => {
-   e.preventDefault();
+//    indexControllers.goTop();
+// });
+// goBottom.addEventListener('click', e => {
+//    e.preventDefault();
 
-   indexControllers.goBottom();
-});
+//    indexControllers.goBottom();
+// });

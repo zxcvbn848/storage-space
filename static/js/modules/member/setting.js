@@ -1,7 +1,7 @@
 const settingModels = {
    userData: null,
    changeState: null,
-   fetchGetUserAPI: function() {
+   fetchGetUser: function() {
       const src = '/api/user';
       return fetch(src)
          .then(response => response.json())
@@ -9,12 +9,12 @@ const settingModels = {
             this.userData = result.data;
          });
    },
-   fetchPostSettingAPI: function() {
+   fetchPostPs: function() {
       const oldPassword = document.querySelector('#old-password').value;
       const newPassword = document.querySelector('#new-password').value;
       const newPasswordConfirm = document.querySelector('#new-password-confirm').value;
 
-      const src = '/api/setting';
+      const src = '/api/setting/ps';
       return fetch(src, {
             method: 'POST',
             headers: {
@@ -35,6 +35,7 @@ const settingViews = {
    renderUserData: function() {
       document.querySelector('[data-user="name"]').textContent = `Name: ${settingModels.userData.name}`;
       document.querySelector('[data-user="email"]').textContent = `Email: ${settingModels.userData.email}`;
+      document.querySelector('#room-list').textContent = `${settingModels.userData.name}'s Room`;
    },
    alertChangePassword: function() {
       const oldPassword = document.querySelector('#old-password');
@@ -68,13 +69,13 @@ const settingControllers = {
       });
    },
    showUserData: function() {
-      settingModels.fetchGetUserAPI()
+      settingModels.fetchGetUser()
          .then(() => settingViews.renderUserData())
          .then(() => settingModels.userData = null)
          .catch(error => console.log(error));
    },
    changePassword: function() {
-      settingModels.fetchPostSettingAPI()
+      settingModels.fetchPostPs()
          .then(() => settingViews.alertChangePassword());
    }
 };

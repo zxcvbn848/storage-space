@@ -1,10 +1,18 @@
+body {
+   background-image: url("../image/page__zh_tw_16262325771560963218.jpeg");
+   height: 100vh;
+   background-size: cover;
+   background-position: center;
+}
+
 /* main */
 main {
    display: flex;
    justify-content: center;
    align-items: center;
+   flex-direction: column;
 
-   gap: 10%;
+   gap: 50px;
 
    margin: 0px auto;
    margin-top: var(--nav-height);
@@ -16,17 +24,25 @@ main {
    /* min-height: 100vh; */
 }
 main .title {
-   width: 100%;
-   height: 20%;
-
-   line-height: 150%;
+   padding: 10px;
 
    font-size: 3.0rem;
    text-align: center;
-   color:black;
+   color: black;
+
+   background-color: rgba(255, 255, 255, 0.877);
+   border-radius: 10px;
 }
 
 /* signin & signup */
+.containers {
+   display: flex;
+   justify-content: center;
+   align-items: center;
+
+   gap: 100px;
+}
+
 .container {
    display: flex;
    justify-content: center;

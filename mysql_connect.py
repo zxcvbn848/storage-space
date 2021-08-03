@@ -8,7 +8,7 @@ load_dotenv()
 try:
    connection_pool = pooling.MySQLConnectionPool(
       pool_name = "storage_pool",
-      pool_size = 5,
+      pool_size = 20,
       pool_reset_session = True,
       host = os.getenv("SERVER_HOST"),
       port = os.getenv("SERVER_PORT"),
@@ -504,7 +504,7 @@ def selectMainToObjects(mainId):
    dataList = []
    try:
       sql_cmd = f"""
-               SELECT o.x, o.y, o.width, o.height, o.href, o.data_layout
+               SELECT o.name, o.x, o.y, o.width, o.height, o.href, o.data_layout
                FROM main_to_objects mto
                INNER JOIN objects o
                ON o.id = mto.object_id
@@ -599,7 +599,7 @@ def selectSubToObjects(subId):
    dataList = []
    try:
       sql_cmd = f"""
-               SELECT o.x, o.y, o.width, o.height, o.href, o.data_layout
+               SELECT o.name, o.x, o.y, o.width, o.height, o.href, o.data_layout
                FROM sub_to_objects sto
                INNER JOIN objects o
                ON o.id = sto.object_id
@@ -844,5 +844,40 @@ def deleteSubObjects(subId):
          connection_object.commit()              
    except Exception as e:
       print(e)
+   finally:
+      closePool(connection_object, cursor)
+# ====================
+# for /api/layout (objects_to_subs)
+def selectObjectToSub(name, mainId):
+   dataList = []
+   try:
+      sql_cmd = f"""
+               SELECT sl.id, sl.html_id, sl.image
+               FROM objects o
+               INNER JOIN sub_to_objects sto
+               ON o.id = sto.object_id
+               INNER JOIN sub_layout sl
+               ON sto.sub_id = sl.id
+               INNER JOIN main_to_subs mts
+               ON mts.sub_id = sl.id
+               WHERE o.name = '{ name }' AND mts.main_id = { mainId }       
+               """
+
+      connection_object = connection_pool.get_connection()
+
+      if connection_object.is_connected():
+         cursor = connection_object.cursor(dictionary = True)
+         cursor.execute(sql_cmd)
+         results = cursor.fetchall()
+      
+      if results:
+         for result in results:
+            dataList.append(result)
+         return dataList
+      else:
+         return None
+   except Exception as e:
+      print(e)
+      return None
    finally:
       closePool(connection_object, cursor)
