@@ -36,6 +36,8 @@ main {
    line-height: var(--button-px);
 
    font-size: 1.5rem;
+
+   color: white;
 }
 
 /* menu */

@@ -4,7 +4,7 @@ let signinConfirmModels = {
    signoutState: null,
    signinCheck: function() {
       if (parent.location.href.split('/')[parent.location.href.split('/').length - 1] === 'signin-up') return;
-      if (!signinConfirmModels.userData && parent.location.href.split('/')[parent.location.href.split('/').length - 1] !== '') parent.location.href = '/';
+      if (!signinConfirmModels.userData && parent.location.href.split('/')[parent.location.href.split('/').length - 1] !== '') parent.location.href = '/signin-up';
    },
    // fetch /api/user with GET
    fetchGetUserAPI: function() {
@@ -22,7 +22,12 @@ let signinConfirmModels = {
             method: 'DELETE'
          })
          .then(response => response.json())
-         .then(result => this.signoutState = result);
+         .then(result => {
+            const auth2 = gapi.auth2.getAuthInstance();
+            auth2.signOut();
+            
+            this.signoutState = result;
+         });
    }
 };
 
@@ -48,20 +53,6 @@ let signinConfirmViews = {
          if (signinForm) {
             signupForm.parentNode.classList.add('hidden');
             signinForm.parentNode.classList.add('hidden');
-            
-            // const nameElement = document.createElement('div');
-            // const textElement = document.createElement('div');
-            // nameElement.classList.add('name-text');
-            // textElement.classList.add('text');
-            // nameElement.textContent = `
-            //    Welcome, ${userData.name}.
-            // `;
-            // textElement.textContent = `
-            //    You can create your first storage record!
-            //    (Links are shown on top of screen.)
-            // `;
-            // mainElement.appendChild(nameElement);
-            // mainElement.appendChild(textElement);
          }
       } else {
          signoutButton.classList.add('hidden');
@@ -80,8 +71,8 @@ let signinConfirmViews = {
    },
    // Signout 
    signoutSuccessDetermine: function() {
-      const signoutSuccess = signinUpModels.signoutState['ok'];
-      const signoutFailed = signinUpModels.signoutState['error'];
+      const signoutSuccess = signinConfirmModels.signoutState['ok'];
+      const signoutFailed = signinConfirmModels.signoutState['error'];
 
       if (signoutSuccess) location.reload();
       if (signoutFailed) alert(result['message']);
@@ -121,6 +112,9 @@ signinConfirmControllers.signinConfirm();
 const memberButton = document.getElementById('member-button');
 /* signout */
 const signoutButton = document.getElementById('signout-button');
-signoutButton.addEventListener('click', signinConfirmControllers.signoutCheck);
+signoutButton.addEventListener('click', e => {
+   e.preventDefault();
+   signinConfirmControllers.signoutCheck();
+});
 
 export { signinConfirmControllers }

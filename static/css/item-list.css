@@ -11,7 +11,7 @@ header {
    padding: 50px 30px;
 
    width: 100%;
-   /* min-height: 100vh; */
+   height: 140px;
 
    background-color: #FFFFFF;
 }
@@ -73,8 +73,7 @@ main {
    padding: 50px 30px;
 
    width: 100%;
-   min-height: calc(100vh - var(--nav-height));
-   /* min-height: 100vh; */
+   min-height: calc(100vh - var(--nav-height) - 140px);
 
    background-color: #FFFFFF;
 }

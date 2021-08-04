@@ -4,13 +4,13 @@
    <meta charset="UTF-8">
    <meta http-equiv="X-UA-Compatible" content="IE=edge">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <meta name="google-signin-client_id" content="{{ google_oauth2_client_id }}">
    <title>{% block title %}{% endblock %}</title>
    <link href="{{ url_for('static', filename='image/Custom-Icon-Design-Flatastic-8-Keys.ico') }}" rel="shortcut icon">
    {% block css %}{% endblock %}
-   <link href="{{ url_for('static', filename='css/loading-spinner.css') }}" rel="stylesheet" type="text/css" media="all">
    <link href="{{ url_for('static', filename='css/base.css') }}" rel="stylesheet" type="text/css" media="all">
-   <link href="{{ url_for('static', filename='css/media.css') }}" rel="stylesheet" type="text/css" media="all">
    {% block cssEnd %}{% endblock %}
+   <script src="{{ url_for('static', filename='js/oauth.js') }}"></script>
    {% block js %}{% endblock %}
 </head>
 <body>

@@ -27,7 +27,7 @@ def postPs():
 
       if not (old_password and new_password and new_password_confirm):
          return jsonify({ "error": True, "message": "Change Falied. All Columns are required." })
-      if old_password != selectUser(id = userId)["password"]:
+      if old_password != selectUser(id = userId, provider = "local")["password"]:
          return jsonify({ "error": True, "message": "Change Falied. Wrong Old Password." })
       if old_password == new_password:
          return jsonify({ "error": True, "message": "Change Falied. New Password must be different from Old one." })
@@ -39,7 +39,7 @@ def postPs():
       
       updateUser(userId, password = new_password)
 
-      if selectUser(id = userId)["password"] == new_password:
+      if selectUser(id = userId, provider = "local")["password"] == new_password:
          return jsonify({ "ok": True, "message": "Change Password Success"})
       else:
          return jsonify({ "error": True, "message": "Change Password Failed. Please Try again." })

@@ -1,10 +1,8 @@
 /* @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC&display=swap'); */
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap');
 
-*, *::after, *::before {
+*:not(.g-signin2>*) {
    box-sizing: border-box;
-
-   color: white;
 
    font-family: 'Roboto Mono', monospace;
    font-style: normal;

@@ -1,6 +1,9 @@
 import sys
 sys.path.append("..")
 
+from google.oauth2 import id_token
+from google.auth.transport import requests
+
 from flask import request, Blueprint, jsonify, session
 from dotenv import load_dotenv
 import os, re
@@ -9,6 +12,8 @@ from mysql_connect import selectUser, insertUser
 from use_bcrypt import *
 
 load_dotenv()
+
+GOOGLE_OAUTH2_CLIENT_ID = os.getenv("GOOGLE_OAUTH2_CLIENT_ID")
 
 api_user = Blueprint("api_user", __name__)
 
@@ -45,15 +50,15 @@ def postUser():
       if not (re.match(passwordRegExp, password) and re.match(emailRegExp, email)):
          return jsonify({ "error": True, "message": "Sign Up Falied, format of Email or Password is wrong." })
 
-      userVerified = selectUser(email = email)
+      userVerified = selectUser(email = email, provider = "local")
       if userVerified:
          return jsonify({ "error": True, "message": "Sign Up Falied, Email have been used or other reason" })
 
       # Hash and Salt Password
       hashedPassword = hashPassword.hashSalt(password)
 
-      insertUser(name = name, email = email, password = hashedPassword)
-      updatedUser = selectUser(email = email, password = hashedPassword)
+      insertUser(name = name, email = email, password = hashedPassword, provider = "local")
+      updatedUser = selectUser(email = email, password = hashedPassword, provider = "local")
       if updatedUser:
          return jsonify({ "ok": True })
       else:
@@ -77,9 +82,9 @@ def patchUser():
       if not (re.match(passwordRegExp, password) and re.match(emailRegExp, email)):
          return jsonify({ "error": True, "message": "Sign In Falied, format of Email or Password is wrong." })
 
-      user = selectUser(email = email)
+      user = selectUser(email = email, provider = "local")
       if user:
-         userHashPassword = selectUser(email = email)["password"]
+         userHashPassword = user["password"]
          # Check Password
          if hashPassword.hashSaltCheck(password, userHashPassword):
             session["user"] = {
@@ -107,3 +112,46 @@ def deleteUser():
    except Exception as e:
       print(e)
       return jsonify({ "error": True, "message": "Server Internal Error" })
+
+@api_user.route("/oauth", methods=["PATCH"])
+def oauth():
+   token = request.get_json()['id_token']
+   try:
+      # Specify the GOOGLE_OAUTH2_CLIENT_ID of the app that accesses the backend:
+      id_info = id_token.verify_oauth2_token(
+         token,
+         requests.Request(),
+         GOOGLE_OAUTH2_CLIENT_ID
+      )
+
+      if id_info['iss'] not in ['accounts.google.com', 'https://accounts.google.com']:
+         raise ValueError('Wrong issuer.')
+
+   except ValueError:
+      # Invalid token
+      raise ValueError('Invalid token')
+
+   name = id_info["name"]
+   email = id_info["email"]
+
+   signedUpUser = selectUser(email = email, provider = "google")
+   if signedUpUser:
+      session["user"] = {
+         "id": signedUpUser["id"],
+         "name": signedUpUser["name"],
+         "email": signedUpUser["email"]
+      }
+      return jsonify({ "ok": True })
+
+   insertUser(name = name, email = email, provider = "google")
+   user = selectUser(email = email, provider = "google")
+
+   if user:
+      session["user"] = {
+         "id": user["id"],
+         "name": user["name"],
+         "email": user["email"]
+      }
+      return jsonify({ "ok": True })
+   else:
+      return jsonify({ "error": True, "message": "Sign In Falied, Email or Password is wrong or other reason." })
