@@ -43,5 +43,6 @@ Client <-> EC2 (Nginx + Flask) <-> RDS (MySQL)
 ---
 
 ## MySQL 架構
+
 ![資料庫架構](https://user-images.githubusercontent.com/70138536/128189420-2231fa9f-416d-458e-bfb4-0e6933dfb920.jpg)
 
