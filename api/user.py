@@ -25,7 +25,8 @@ def getUser():
       data = {
          "id": session["user"]["id"],
          "name": session["user"]["name"],
-         "email": session["user"]["email"]
+         "email": session["user"]["email"],
+         "provider": session["user"]["provider"]
       }
       return jsonify({ "data": data })
    else:
@@ -90,7 +91,8 @@ def patchUser():
             session["user"] = {
                "id": user["id"],
                "name": user["name"],
-               "email": user["email"]
+               "email": user["email"],
+               "provider": user["provider"]
             }
             return jsonify({ "ok": True })
          else:
@@ -139,18 +141,20 @@ def oauth():
       session["user"] = {
          "id": signedUpUser["id"],
          "name": signedUpUser["name"],
-         "email": signedUpUser["email"]
+         "email": signedUpUser["email"],
+         "provider": signedUpUser["provider"]
       }
       return jsonify({ "ok": True })
 
    insertUser(name = name, email = email, provider = "google")
+   
    user = selectUser(email = email, provider = "google")
-
    if user:
       session["user"] = {
          "id": user["id"],
          "name": user["name"],
-         "email": user["email"]
+         "email": user["email"],
+         "provider": user["provider"]
       }
       return jsonify({ "ok": True })
    else:

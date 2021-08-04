@@ -32,10 +32,34 @@ const settingModels = {
 };
 
 const settingViews = {
+   removeAllChildNodes: function(parent) {
+      while (parent.firstChild) {
+         parent.removeChild(parent.firstChild);
+      }
+   },
    renderUserData: function() {
       document.querySelector('[data-user="name"]').textContent = `Name: ${settingModels.userData.name}`;
       document.querySelector('[data-user="email"]').textContent = `Email: ${settingModels.userData.email}`;
       document.querySelector('#room-list').textContent = `${settingModels.userData.name}'s Room`;
+   },
+   checkOAuth: function() {
+      if (settingModels.userData.provider === 'google') {
+         const passwordArea = document.querySelector('[data-setting="password"]');
+         this.removeAllChildNodes(passwordArea);
+         const title = document.createElement('div');
+         title.classList.add('title');
+         title.textContent = 'Change Password';
+
+         const hr = document.createElement('hr');
+
+         const textElement = document.createElement('div');
+         textElement.textContent = 'Hi! You have signed in from Google, so don\'t need to change.'
+
+         passwordArea.appendChild(title);
+         passwordArea.appendChild(hr);
+         passwordArea.appendChild(textElement);
+      }
+      return;
    },
    alertChangePassword: function() {
       const oldPassword = document.querySelector('#old-password');
@@ -71,6 +95,7 @@ const settingControllers = {
    showUserData: function() {
       settingModels.fetchGetUser()
          .then(() => settingViews.renderUserData())
+         .then(() => settingViews.checkOAuth())
          .then(() => settingModels.userData = null)
          .catch(error => console.log(error));
    },

@@ -20,10 +20,10 @@ cursor.execute("""
    SET FOREIGN_KEY_CHECKS = 0;
    """
 )
-cursor.execute("""
-   DROP TABLE IF EXISTS users;
-   """
-)
+# cursor.execute("""
+#    DROP TABLE IF EXISTS users;
+#    """
+# )
 cursor.execute("""
    DROP TABLE IF EXISTS main_layout;
    """
