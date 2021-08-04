@@ -3,10 +3,10 @@ sys.path.append("..")
 
 from flask import request, Blueprint, jsonify, session
 from dotenv import load_dotenv
-import os
-import re
+import os, re
 
 from mysql_connect import *
+from use_bcrypt import *
 
 load_dotenv()
 
@@ -27,7 +27,7 @@ def postPs():
 
       if not (old_password and new_password and new_password_confirm):
          return jsonify({ "error": True, "message": "Change Falied. All Columns are required." })
-      if old_password != selectUser(id = userId, provider = "local")["password"]:
+      if not hashPassword.hashSaltCheck(old_password, selectUser(id = userId, provider = "local")["password"]) :
          return jsonify({ "error": True, "message": "Change Falied. Wrong Old Password." })
       if old_password == new_password:
          return jsonify({ "error": True, "message": "Change Falied. New Password must be different from Old one." })
@@ -37,10 +37,17 @@ def postPs():
       if not (re.match(passwordRegExp, old_password) and re.match(passwordRegExp, new_password) and re.match(passwordRegExp, new_password_confirm)):
          return jsonify({ "error": True, "message": "Change Falied, format of Password is wrong." })
       
-      updateUser(userId, password = new_password)
+      hashedPassword = hashPassword.hashSalt(new_password)
+      
+      updateUser(userId, password = hashedPassword)
 
-      if selectUser(id = userId, provider = "local")["password"] == new_password:
-         return jsonify({ "ok": True, "message": "Change Password Success"})
+      user = selectUser(id = userId, provider = "local")
+      if user:
+         userHashPassword = user["password"]
+         if hashPassword.hashSaltCheck(new_password, userHashPassword):
+            return jsonify({ "ok": True, "message": "Change Password Success"})
+         else:
+            return jsonify({ "error": True, "message": "Change Password Failed. Please Try again." })
       else:
          return jsonify({ "error": True, "message": "Change Password Failed. Please Try again." })
    except Exception as e:
