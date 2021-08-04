@@ -116,9 +116,9 @@ document.querySelector('.layout-menu').querySelectorAll('button').forEach(button
 
 /* Auto Save */
 /* onbeforeunload */
-window.addEventListener('beforeunload', e => {
-   svgModels.fetchPostLayout();
-   e.returnValue = '';
-// TBD: signout issue
-   // signinConfirmControllers.signout();
-});
+// window.addEventListener('beforeunload', e => {
+//    svgModels.fetchPostLayout();
+//    e.returnValue = '';
+// // TBD: signout issue
+//    // signinConfirmControllers.signout();
+// });
