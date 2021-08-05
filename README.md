@@ -16,7 +16,7 @@
 
 **Database**: MySQL, Normalization, Connection Pool 
 
-**Version Control**: Git, Github
+**Version Control**: Git, GitHub
 
 **AWS**: EC2 (AMI2) , RDS (MySQL)
 
@@ -27,6 +27,8 @@
 **Reverse Proxy**: Nginx
 
 ### Others:
+
+**Third-Party**: Google OAuth2 Login
 
 **Design Pattern**: MVC
 
